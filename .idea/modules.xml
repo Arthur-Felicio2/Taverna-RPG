@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Taverna-RPG.iml" filepath="$PROJECT_DIR$/.idea/Taverna-RPG.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Taverna-RPG/Taverna-RPG.iml" filepath="$PROJECT_DIR$/Taverna-RPG/Taverna-RPG.iml" />
     </modules>
   </component>
 </project>

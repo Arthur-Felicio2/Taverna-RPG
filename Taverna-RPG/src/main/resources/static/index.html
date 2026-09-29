@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taverna RPG</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>🍺 Taverna RPG - Registro de Aventureiros</h1>
+
+    <!-- Formulário -->
+    <form id="form-personagem">
+        <input type="hidden" id="txtId">
+
+        <div class="form-group">
+            <input type="text" id="txtNome" placeholder="Nome" required>
+            <input type="text" id="txtRaca" placeholder="Raça" required>
+            <input type="text" id="txtClasse" placeholder="Classe" required>
+            <input type="number" id="txtNivel" placeholder="Nível" value="1" min="1" required>
+        </div>
+
+        <div class="form-group">
+            <input type="number" id="txtVida" placeholder="Pontos de Vida" value="10" required>
+            <input type="number" id="txtMana" placeholder="Pontos de Mana" value="5" required>
+            <input type="number" id="txtForca" placeholder="Força" value="10" required>
+            <input type="number" id="txtDestreza" placeholder="Destreza" value="10" required>
+            <input type="number" id="txtInteligencia" placeholder="Inteligência" value="10" required>
+            <input type="text" id="txtAlinhamento" placeholder="Alinhamento" required>
+        </div>
+
+        <div class="actions">
+            <button type="button" id="btnSalvar" onclick="salvarPersonagem()">Conjurar / Salvar</button>
+            <button type="button" class="btn-clear" onclick="limparFormulario()">Limpar Campos</button>
+        </div>
+    </form>
+
+    <!-- Tabela -->
+    <h2>Aventureiros na Taverna</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Raça</th>
+            <th>Classe</th>
+            <th>Nível</th>
+            <th>Vida</th>
+            <th>Mana</th>
+            <th>For/Des/Int</th>
+            <th>Alinhamento</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody id="tabela-personagens">
+        <!-- Dados inseridos via JavaScript -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    const API_URL = '/api/personagens';
+
+    document.addEventListener('DOMContentLoaded', carregarPersonagens);
+
+    async function carregarPersonagens() {
+        const res = await fetch(API_URL);
+        const dados = await res.json();
+        const tbody = document.getElementById('tabela-personagens');
+        tbody.innerHTML = '';
+
+        dados.forEach(p => {
+            tbody.innerHTML += `
+                    <tr>
+                        <td>${p.id}</td>
+                        <td><strong>${p.nome}</strong></td>
+                        <td>${p.raca}</td>
+                        <td>${p.classe}</td>
+                        <td>${p.nivel}</td>
+                        <td>${p.pontosVida}</td>
+                        <td>${p.pontosMana}</td>
+                        <td>${p.atributoForca}/${p.atributoDestreza}/${p.atributoInteligencia}</td>
+                        <td>${p.alinhamento}</td>
+                        <td>
+                            <button onclick='editarPersonagem(${JSON.stringify(p)})'>Editar</button>
+                            <button class="btn-danger" onclick="excluirPersonagem(${p.id})">Expulsar</button>
+                        </td>
+                    </tr>
+                `;
+        });
+    }
+
+    async function salvarPersonagem() {
+        const id = document.getElementById('txtId').value;
+        const personagem = {
+            nome: document.getElementById('txtNome').value,
+            raca: document.getElementById('txtRaca').value,
+            classe: document.getElementById('txtClasse').value,
+            nivel: parseInt(document.getElementById('txtNivel').value),
+            pontosVida: parseInt(document.getElementById('txtVida').value),
+            pontosMana: parseInt(document.getElementById('txtMana').value),
+            atributoForca: parseInt(document.getElementById('txtForca').value),
+            atributoDestreza: parseInt(document.getElementById('txtDestreza').value),
+            atributoInteligencia: parseInt(document.getElementById('txtInteligencia').value),
+            alinhamento: document.getElementById('txtAlinhamento').value
+        };
+
+        const metodo = id ? 'PUT' : 'POST';
+        const url = id ? `${API_URL}/${id}` : API_URL;
+
+        await fetch(url, {
+            method: metodo,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(personagem)
+        });
+
+        limparFormulario();
+        carregarPersonagens();
+    }
+
+    function editarPersonagem(p) {
+        document.getElementById('txtId').value = p.id;
+        document.getElementById('txtNome').value = p.nome;
+        document.getElementById('txtRaca').value = p.raca;
+        document.getElementById('txtClasse').value = p.classe;
+        document.getElementById('txtNivel').value = p.nivel;
+        document.getElementById('txtVida').value = p.pontosVida;
+        document.getElementById('txtMana').value = p.pontosMana;
+        document.getElementById('txtForca').value = p.atributoForca;
+        document.getElementById('txtDestreza').value = p.atributoDestreza;
+        document.getElementById('txtInteligencia').value = p.atributoInteligencia;
+        document.getElementById('txtAlinhamento').value = p.alinhamento;
+    }
+
+    async function excluirPersonagem(id) {
+        if (confirm('Tem certeza que deseja expulsar este aventureiro?')) {
+            await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+            carregarPersonagens();
+        }
+    }
+
+    function limparFormulario() {
+        document.getElementById('form-personagem').reset();
+        document.getElementById('txtId').value = '';
+    }
+</script>
+</body>
+</html>
