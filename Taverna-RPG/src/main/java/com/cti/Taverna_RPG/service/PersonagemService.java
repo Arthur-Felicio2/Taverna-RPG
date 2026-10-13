@@ -16,11 +16,14 @@ public class PersonagemService {
         this.repository = repository;
     }
 
-    public List<Personagem> listarTodos() {
+    public List<Personagem> listarTodos(String classe) {
+        if (classe != null && !classe.trim().isEmpty()) {
+            return repository.findByClasseIgnoreCase(classe);
+        }
         return repository.findAll();
     }
 
-    public Optional<Personagem> buscarPorId(int id) {
+    public Optional<Personagem> buscarPorId(Integer id) {
         return repository.findById(id);
     }
 
@@ -28,7 +31,27 @@ public class PersonagemService {
         return repository.save(personagem);
     }
 
-    public void excluir(int id) {
-        repository.deleteById(id);
+    public Optional<Personagem> atualizar(Integer id, Personagem dadosAtualizados) {
+        return repository.findById(id).map(existente -> {
+            existente.setNome(dadosAtualizados.getNome());
+            existente.setRaca(dadosAtualizados.getRaca());
+            existente.setClasse(dadosAtualizados.getClasse());
+            existente.setNivel(dadosAtualizados.getNivel());
+            existente.setPontosVida(dadosAtualizados.getPontosVida());
+            existente.setPontosMana(dadosAtualizados.getPontosMana());
+            existente.setAtributoForca(dadosAtualizados.getAtributoForca());
+            existente.setAtributoDestreza(dadosAtualizados.getAtributoDestreza());
+            existente.setAtributoInteligencia(dadosAtualizados.getAtributoInteligencia());
+            existente.setAlinhamento(dadosAtualizados.getAlinhamento());
+            return repository.save(existente);
+        });
+    }
+
+    public boolean excluir(Integer id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

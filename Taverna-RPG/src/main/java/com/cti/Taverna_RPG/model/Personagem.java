@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Personagens")
@@ -17,7 +17,7 @@ public class Personagem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "Nome", nullable = false)
     private String nome;
@@ -51,5 +51,5 @@ public class Personagem {
 
     @CreationTimestamp
     @Column(name = "data_criacao", updatable = false)
-    private Timestamp dataCriacao;
+    private LocalDateTime dataCriacao;
 }

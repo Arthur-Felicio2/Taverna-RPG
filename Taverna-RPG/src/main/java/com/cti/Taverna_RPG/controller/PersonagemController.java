@@ -18,15 +18,15 @@ public class PersonagemController {
         this.service = service;
     }
 
-    // Listar todos os personagens (GET /api/personagens)
+    // Listar todos os personagens ou filtrar por classe (GET /api/personagens ou GET /api/personagens?classe=Mago)
     @GetMapping
-    public List<Personagem> listar() {
-        return service.listarTodos();
+    public List<Personagem> listar(@RequestParam(required = false) String classe) {
+        return service.listarTodos(classe);
     }
 
     // Buscar por ID (GET /api/personagens/{id})
     @GetMapping("/{id}")
-    public ResponseEntity<Personagem> buscarPorId(@PathVariable int id) {
+    public ResponseEntity<Personagem> buscarPorId(@PathVariable Integer id) {
         return service.buscarPorId(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -41,21 +41,16 @@ public class PersonagemController {
 
     // Atualizar personagem (PUT /api/personagens/{id})
     @PutMapping("/{id}")
-    public ResponseEntity<Personagem> atualizar(@PathVariable int id, @RequestBody Personagem personagem) {
-        return service.buscarPorId(id)
-                .map(pExistente -> {
-                    personagem.setId(id);
-                    Personagem atualizado = service.salvar(personagem);
-                    return ResponseEntity.ok(atualizado);
-                })
+    public ResponseEntity<Personagem> atualizar(@PathVariable Integer id, @RequestBody Personagem personagem) {
+        return service.atualizar(id, personagem)
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     // Deletar personagem (DELETE /api/personagens/{id})
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable int id) {
-        if (service.buscarPorId(id).isPresent()) {
-            service.excluir(id);
+    public ResponseEntity<Void> deletar(@PathVariable Integer id) {
+        if (service.excluir(id)) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();

@@ -3,122 +3,1910 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taverna RPG</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Taverna Real &mdash; Gestão de Aventureiros</title>
+
+    <!-- Tipografia Moderna & Limpa (Inter & Plus Jakarta Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* ==========================================================================
+           DESIGN SYSTEM MODERNO & LIMPO (SaaS Dashboard & Clean CRUD)
+           ========================================================================== */
+        :root {
+            /* Cores Neutras & Superfícies */
+            --bg-page: #f8fafc;
+            --bg-surface: #ffffff;
+            --bg-subtle: #f1f5f9;
+            --border-color: #e2e8f0;
+            --border-hover: #cbd5e1;
+
+            /* Tipografia & Hierarquia de Texto */
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+
+            /* Cores de Destaque (Brand / Indigo SaaS) */
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --primary-light: #eef2ff;
+            --primary-text: #3730a3;
+
+            /* Indicadores Semânticos */
+            --success: #059669;
+            --success-light: #ecfdf5;
+            --warning: #d97706;
+            --warning-light: #fffbeb;
+            --danger: #dc2626;
+            --danger-light: #fef2f2;
+            --info: #0284c7;
+            --info-light: #f0f9ff;
+
+            /* Vitalidade e Recursos */
+            --vital-hp: #e11d48;
+            --vital-hp-bg: #ffe4e6;
+            --vital-mp: #2563eb;
+            --vital-mp-bg: #dbeafe;
+
+            /* Geometria & Efeitos */
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --radius-full: 9999px;
+
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+            --shadow-modal: 0 20px 25px -5px rgba(15, 23, 42, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.08);
+
+            --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-primary);
+            line-height: 1.5;
+            font-size: 0.9375rem;
+            min-height: 100vh;
+        }
+
+        button, input, select {
+            font-family: inherit;
+        }
+
+        /* ==========================================================================
+           1. CABEÇALHO SUPERIOR (NAVBAR CLEAN)
+           ========================================================================== */
+        .navbar {
+            background-color: var(--bg-surface);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 40;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .brand-logo {
+            width: 38px;
+            height: 38px;
+            border-radius: var(--radius-md);
+            background: linear-gradient(135deg, var(--primary) 0%, #312e81 100%);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: 0 2px 4px rgba(79, 70, 229, 0.25);
+        }
+
+        .brand-title-wrap {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        .brand-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-link {
+            padding: 8px 14px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            border: none;
+            background: transparent;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            background-color: var(--bg-subtle);
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            background-color: var(--primary-light);
+        }
+
+        .nav-user-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon-button {
+            position: relative;
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-surface);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .icon-button:hover {
+            background-color: var(--bg-subtle);
+            color: var(--text-primary);
+            border-color: var(--border-hover);
+        }
+
+        .icon-badge {
+            position: absolute;
+            top: 7px;
+            right: 7px;
+            width: 7px;
+            height: 7px;
+            border-radius: var(--radius-full);
+            background-color: var(--primary);
+            border: 1.5px solid var(--bg-surface);
+        }
+
+        .user-chip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-left: 12px;
+            border-left: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-full);
+            background-color: var(--primary-light);
+            color: var(--primary-text);
+            font-weight: 700;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            position: relative;
+        }
+
+        .user-avatar .status-dot {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: var(--radius-full);
+            background-color: var(--success);
+            border: 1.5px solid var(--bg-surface);
+        }
+
+        /* ==========================================================================
+           2. CONTEÚDO PRINCIPAL (DASHBOARD WRAPPER)
+           ========================================================================== */
+        .app-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 24px 60px;
+        }
+
+        /* Cabeçalho da Página */
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .page-title-wrap h1 {
+            font-size: 1.625rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            line-height: 1.2;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .page-title-wrap p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .page-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* Botões Padrão */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            padding: 9px 16px;
+            border-radius: var(--radius-md);
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 1px 2px rgba(79, 70, 229, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            box-shadow: 0 2px 4px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: var(--bg-surface);
+            color: var(--text-secondary);
+            border-color: var(--border-color);
+            box-shadow: var(--shadow-xs);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--bg-subtle);
+            color: var(--text-primary);
+            border-color: var(--border-hover);
+        }
+
+        /* ==========================================================================
+           3. CARDS DE MÉTRICAS (KPIs MODERNOS)
+           ========================================================================== */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .metric-card {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 18px 20px;
+            box-shadow: var(--shadow-xs);
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+
+        .metric-card:hover {
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .metric-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .metric-label {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .metric-value {
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            line-height: 1.1;
+        }
+
+        .metric-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .metric-icon-box {
+            width: 42px;
+            height: 42px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .metric-icon-indigo {
+            background-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .metric-icon-amber {
+            background-color: var(--warning-light);
+            color: var(--warning);
+        }
+
+        .metric-icon-blue {
+            background-color: var(--info-light);
+            color: var(--info);
+        }
+
+        .metric-icon-emerald {
+            background-color: var(--success-light);
+            color: var(--success);
+        }
+
+        /* ==========================================================================
+           4. BARRA DE PESQUISA & FILTROS (TOOLBAR)
+           ========================================================================== */
+        .toolbar {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-xs);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .filter-group::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-btn {
+            background-color: transparent;
+            border: 1px solid transparent;
+            color: var(--text-secondary);
+            font-size: 0.8125rem;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover {
+            background-color: var(--bg-subtle);
+            color: var(--text-primary);
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary-light);
+            color: var(--primary-text);
+            border-color: rgba(79, 70, 229, 0.2);
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            max-width: 320px;
+            min-width: 220px;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            pointer-events: none;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 8px 12px 8px 36px;
+            font-size: 0.875rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background-color: var(--bg-subtle);
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            background-color: var(--bg-surface);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           5. TABELA DE REGISTROS (CLEAN DATA TABLE)
+           ========================================================================== */
+        .table-card {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xs);
+            overflow: hidden;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            min-width: 1040px;
+        }
+
+        .data-table thead th {
+            background-color: #fafbfc;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            white-space: nowrap;
+        }
+
+        .data-table tbody tr {
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .data-table tbody tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .data-table tbody tr.row-selected {
+            background-color: #f5f3ff !important;
+        }
+
+        .data-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .data-table tbody td {
+            padding: 14px 16px;
+            font-size: 0.875rem;
+            color: var(--text-primary);
+            vertical-align: middle;
+        }
+
+        /* Checkbox Moderno */
+        .table-checkbox {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            border: 1.5px solid var(--border-hover);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            background-color: var(--bg-surface);
+        }
+
+        .table-checkbox.checked {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: #ffffff;
+        }
+
+        /* Célula do Aventureiro (Avatar + Nome + ID) */
+        .adventurer-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .adventurer-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-md);
+            background-color: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .data-table tbody tr:hover .adventurer-avatar {
+            color: var(--primary);
+            border-color: rgba(79, 70, 229, 0.3);
+            background-color: var(--primary-light);
+        }
+
+        .adventurer-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .adventurer-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .adventurer-id {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: ui-monospace, monospace;
+        }
+
+        /* Badges & Tags */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            white-space: nowrap;
+        }
+
+        .badge-subtle {
+            background-color: var(--bg-subtle);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        .badge-level {
+            font-family: ui-monospace, monospace;
+            background-color: #f1f5f9;
+            color: #1e293b;
+            border: 1px solid var(--border-color);
+            font-weight: 700;
+            font-size: 0.8125rem;
+        }
+
+        .badge-success {
+            background-color: var(--success-light);
+            color: var(--success);
+        }
+
+        .badge-warning {
+            background-color: var(--warning-light);
+            color: var(--warning);
+        }
+
+        .badge-danger {
+            background-color: var(--danger-light);
+            color: var(--danger);
+        }
+
+        /* Barras de Vida e Mana */
+        .vitals-container {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            width: 130px;
+        }
+
+        .vital-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .vital-hp-label { color: var(--vital-hp); }
+        .vital-mp-label { color: var(--vital-mp); }
+
+        .progress-track {
+            height: 4px;
+            background-color: #e2e8f0;
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .progress-fill-hp {
+            height: 100%;
+            background-color: var(--vital-hp);
+            border-radius: var(--radius-full);
+        }
+
+        .progress-fill-mp {
+            height: 100%;
+            background-color: var(--vital-mp);
+            border-radius: var(--radius-full);
+        }
+
+        /* Tríade de Atributos */
+        .triad-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: ui-monospace, monospace;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+            background-color: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .triad-badge span {
+            color: var(--text-muted);
+        }
+
+        /* Botões de Ação na Tabela */
+        .row-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 4px;
+        }
+
+        .btn-table-action {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-sm);
+            border: 1px solid transparent;
+            background-color: transparent;
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.85rem;
+        }
+
+        .btn-table-action:hover {
+            background-color: var(--bg-subtle);
+            color: var(--text-primary);
+            border-color: var(--border-color);
+        }
+
+        .btn-table-action.delete:hover {
+            background-color: var(--danger-light);
+            color: var(--danger);
+            border-color: rgba(220, 38, 38, 0.2);
+        }
+
+        /* Estado Vazio */
+        .empty-state {
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .empty-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius-full);
+            background-color: var(--bg-subtle);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 16px;
+        }
+
+        .empty-state h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .empty-state p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            max-width: 400px;
+            margin: 0 auto 20px;
+        }
+
+        /* Rodapé da Tabela */
+        .table-footer {
+            padding: 14px 20px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            background-color: #fafbfc;
+        }
+
+        .pagination {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .page-item {
+            min-width: 32px;
+            height: 32px;
+            padding: 0 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-surface);
+            color: var(--text-secondary);
+            font-size: 0.8125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .page-item:hover {
+            background-color: var(--bg-subtle);
+            color: var(--text-primary);
+        }
+
+        .page-item.active {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: #ffffff;
+        }
+
+        /* ==========================================================================
+           6. MODAL LIMPO & MODERNO (CADASTRO / EDIÇÃO)
+           ========================================================================== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background-color: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-container {
+            width: 100%;
+            max-width: 680px;
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-modal);
+            border: 1px solid var(--border-color);
+            transform: scale(0.96) translateY(8px);
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.open .modal-container {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-title-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .modal-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal-desc {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+
+        .modal-close-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-md);
+            border: none;
+            background-color: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .modal-close-btn:hover {
+            background-color: var(--bg-subtle);
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .form-section {
+            margin-bottom: 24px;
+        }
+
+        .form-section:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .form-grid {
+            display: grid;
+            gap: 14px;
+        }
+
+        .grid-identity { grid-template-columns: 2fr 1.2fr; }
+        .grid-identity-row2 { grid-template-columns: 1.5fr 1fr; }
+        .grid-vitals { grid-template-columns: 1fr 1fr 1.5fr; }
+        .grid-attributes { grid-template-columns: repeat(3, 1fr); }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 9px 12px;
+            font-size: 0.875rem;
+            color: var(--text-primary);
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .attribute-input {
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.05rem;
+            font-family: ui-monospace, monospace;
+        }
+
+        .modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border-color);
+            background-color: #fafbfc;
+            border-bottom-left-radius: var(--radius-lg);
+            border-bottom-right-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        /* ==========================================================================
+           7. TOAST NOTIFIER (NOTIFICAÇÕES FLUTUANTES)
+           ========================================================================== */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 18px;
+            background-color: #0f172a;
+            color: #ffffff;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            font-size: 0.875rem;
+            font-weight: 500;
+            transform: translateY(20px);
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+        }
+
+        .toast i {
+            color: #818cf8;
+            font-size: 1rem;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* ==========================================================================
+           8. RESPONSIVIDADE
+           ========================================================================== */
+        @media (max-width: 900px) {
+            .nav-menu { display: none; }
+            .grid-identity, .grid-identity-row2, .grid-vitals { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            .app-container { padding: 20px 16px 40px; }
+            .toolbar { flex-direction: column; align-items: stretch; }
+            .search-box { max-width: 100%; }
+            .grid-attributes { grid-template-columns: 1fr; }
+            .page-header { flex-direction: column; align-items: flex-start; }
+            .page-header-actions { width: 100%; justify-content: flex-start; }
+            .toast { left: 16px; right: 16px; bottom: 16px; }
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    <h1>🍺 Taverna RPG - Registro de Aventureiros</h1>
 
-    <!-- Formulário -->
-    <form id="form-personagem">
-        <input type="hidden" id="txtId">
+<!-- 1. CABEÇALHO SUPERIOR (NAVBAR CLEAN) -->
+<header class="navbar">
+    <div class="nav-container">
+        <a href="#" class="brand-link">
+            <div class="brand-logo">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div class="brand-title-wrap">
+                <span class="brand-title">Taverna Real</span>
+                <span class="brand-subtitle">Gestão de Guilda & Aventureiros</span>
+            </div>
+        </a>
 
-        <div class="form-group">
-            <input type="text" id="txtNome" placeholder="Nome" required>
-            <input type="text" id="txtRaca" placeholder="Raça" required>
-            <input type="text" id="txtClasse" placeholder="Classe" required>
-            <input type="number" id="txtNivel" placeholder="Nível" value="1" min="1" required>
+        <!-- Navegação -->
+        <nav class="nav-menu">
+            <button type="button" class="nav-link" onclick="trocarAba(this)">Salão Principal</button>
+            <button type="button" class="nav-link active" onclick="trocarAba(this)">Aventureiros</button>
+            <button type="button" class="nav-link" onclick="trocarAba(this)">Quadro de Missões</button>
+            <button type="button" class="nav-link" onclick="trocarAba(this)">Arsenal</button>
+            <button type="button" class="nav-link" onclick="trocarAba(this)">Relatórios</button>
+        </nav>
+
+        <!-- Ações do Usuário -->
+        <div class="nav-user-actions">
+            <button type="button" class="icon-button" title="Notificações" onclick="notificar('2 notificações pendentes da Coroa.', 'fa-solid fa-bell')">
+                <i class="fa-regular fa-bell"></i>
+                <span class="icon-badge"></span>
+            </button>
+            <button type="button" class="icon-button" title="Configurações" onclick="notificar('Painel de configurações aberto.', 'fa-solid fa-gear')">
+                <i class="fa-solid fa-gear"></i>
+            </button>
+
+            <div class="user-chip" title="Mestre da Guilda">
+                <div class="user-avatar">
+                    <span>MG</span>
+                    <span class="status-dot"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- 2. CONTEÚDO PRINCIPAL -->
+<main class="app-container">
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="page-title-wrap">
+            <h1>
+                <span>Aventureiros Registrados</span>
+                <span id="badge-total" class="badge badge-subtle">0 Registrados</span>
+            </h1>
+            <p>Monitore o elenco, status vitais, linhagens e prontidão para expedições imperiais.</p>
         </div>
 
-        <div class="form-group">
-            <input type="number" id="txtVida" placeholder="Pontos de Vida" value="10" required>
-            <input type="number" id="txtMana" placeholder="Pontos de Mana" value="5" required>
-            <input type="number" id="txtForca" placeholder="Força" value="10" required>
-            <input type="number" id="txtDestreza" placeholder="Destreza" value="10" required>
-            <input type="number" id="txtInteligencia" placeholder="Inteligência" value="10" required>
-            <input type="text" id="txtAlinhamento" placeholder="Alinhamento" required>
+        <div class="page-header-actions">
+            <button type="button" class="btn btn-secondary" onclick="ordenarPorNivel()">
+                <i class="fa-solid fa-arrow-up-wide-short"></i> Ordenar por Nível
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="exportarTomo()">
+                <i class="fa-solid fa-download"></i> Exportar JSON
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="restaurarDadosIniciais()">
+                <i class="fa-solid fa-rotate-left"></i> Restaurar Dados
+            </button>
+            <button type="button" class="btn btn-primary" onclick="abrirModalCadastro()">
+                <i class="fa-solid fa-plus"></i> Novo Aventureiro
+            </button>
+        </div>
+    </div>
+
+    <!-- 3. CARDS DE MÉTRICAS (KPIS) -->
+    <section class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-info">
+                <span class="metric-label">Aventureiros Ativos</span>
+                <span id="kpi-recrutados" class="metric-value">0</span>
+                <span class="metric-sub">Cadastrados no sistema</span>
+            </div>
+            <div class="metric-icon-box metric-icon-indigo">
+                <i class="fa-solid fa-users"></i>
+            </div>
         </div>
 
-        <div class="actions">
-            <button type="button" id="btnSalvar" onclick="salvarPersonagem()">Conjurar / Salvar</button>
-            <button type="button" class="btn-clear" onclick="limparFormulario()">Limpar Campos</button>
+        <div class="metric-card">
+            <div class="metric-info">
+                <span class="metric-label">Ocupação do Salão</span>
+                <span id="kpi-ocupacao" class="metric-value">0%</span>
+                <span class="metric-sub">Capacidade total: 20</span>
+            </div>
+            <div class="metric-icon-box metric-icon-amber">
+                <i class="fa-solid fa-fire"></i>
+            </div>
         </div>
-    </form>
 
-    <!-- Tabela -->
-    <h2>Aventureiros na Taverna</h2>
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Raça</th>
-            <th>Classe</th>
-            <th>Nível</th>
-            <th>Vida</th>
-            <th>Mana</th>
-            <th>For/Des/Int</th>
-            <th>Alinhamento</th>
-            <th>Ações</th>
-        </tr>
-        </thead>
-        <tbody id="tabela-personagens">
-        <!-- Dados inseridos via JavaScript -->
-        </tbody>
-    </table>
+        <div class="metric-card">
+            <div class="metric-info">
+                <span class="metric-label">Nível Médio</span>
+                <span id="kpi-nivel-medio" class="metric-value">1.0</span>
+                <span class="metric-sub">Poder de combate global</span>
+            </div>
+            <div class="metric-icon-box metric-icon-blue">
+                <i class="fa-solid fa-medal"></i>
+            </div>
+        </div>
+
+        <div class="metric-card">
+            <div class="metric-info">
+                <span class="metric-label">Leais ao Reino</span>
+                <span id="kpi-leais" class="metric-value">0</span>
+                <span class="metric-sub">Alinhamento Bom ou Leal</span>
+            </div>
+            <div class="metric-icon-box metric-icon-emerald">
+                <i class="fa-solid fa-shield-heart"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. TOOLBAR DE PESQUISA & FILTROS -->
+    <section class="toolbar">
+        <div class="filter-group">
+            <button type="button" class="filter-btn active" onclick="filtrarPorClasse('', this)">Todas as Classes</button>
+            <button type="button" class="filter-btn" onclick="filtrarPorClasse('Guerreiro', this)">Guerreiro</button>
+            <button type="button" class="filter-btn" onclick="filtrarPorClasse('Mago', this)">Mago</button>
+            <button type="button" class="filter-btn" onclick="filtrarPorClasse('Ladino', this)">Ladino</button>
+            <button type="button" class="filter-btn" onclick="filtrarPorClasse('Clérigo', this)">Clérigo</button>
+            <button type="button" class="filter-btn" onclick="filtrarPorClasse('Bardo', this)">Bardo</button>
+        </div>
+
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="filtro-busca" class="search-input" placeholder="Buscar por nome, classe, raça..." oninput="filtrarAventureiros()">
+        </div>
+    </section>
+
+    <!-- 5. TABELA DE REGISTROS -->
+    <section class="table-card">
+        <div class="table-responsive">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th style="width: 44px; text-align: center;">
+                                <span class="table-checkbox" onclick="alternarTodosCheckboxes(this)">
+                                    <i class="fa-solid fa-check" style="display: none; font-size: 10px;"></i>
+                                </span>
+                    </th>
+                    <th>Aventureiro</th>
+                    <th>Classe</th>
+                    <th>Raça</th>
+                    <th style="text-align: center;">Nível</th>
+                    <th>Recursos Vitais</th>
+                    <th style="text-align: center;">FOR / DES / INT</th>
+                    <th>Alinhamento</th>
+                    <th style="text-align: right; padding-right: 20px;">Ações</th>
+                </tr>
+                </thead>
+                <tbody id="tabela-personagens">
+                <!-- Renderizado via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Estado Vazio -->
+        <div id="empty-state" class="empty-state" style="display: none;">
+            <div class="empty-icon">
+                <i class="fa-solid fa-folder-open"></i>
+            </div>
+            <h3>Nenhum aventureiro encontrado</h3>
+            <p>Nenhum registro corresponde aos filtros ou a guilda está vazia. Clique em "Novo Aventureiro" para começar.</p>
+            <button type="button" class="btn btn-primary" onclick="abrirModalCadastro()">
+                <i class="fa-solid fa-plus"></i> Novo Aventureiro
+            </button>
+        </div>
+
+        <!-- Rodapé com Paginação -->
+        <div class="table-footer">
+            <span id="footer-count">Mostrando 0 aventureiros</span>
+            <div class="pagination">
+                <button type="button" class="page-item"><i class="fa-solid fa-chevron-left" style="font-size: 11px;"></i></button>
+                <button type="button" class="page-item active">1</button>
+                <button type="button" class="page-item">2</button>
+                <button type="button" class="page-item"><i class="fa-solid fa-chevron-right" style="font-size: 11px;"></i></button>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ==========================================================================
+     6. MODAL MODERNO: CADASTRO / EDIÇÃO
+     ========================================================================== -->
+<div id="modal-cadastro" class="modal-overlay" onclick="fecharModalAoClicarFora(event)">
+    <div class="modal-container">
+        <div class="modal-header">
+            <div class="modal-title-wrap">
+                <h2 id="modal-titulo" class="modal-title">
+                    <i class="fa-solid fa-user-plus" style="color: var(--primary);"></i> Novo Aventureiro
+                </h2>
+                <p class="modal-desc">Preencha as informações cadastrais e atributos de combate.</p>
+            </div>
+            <button type="button" class="modal-close-btn" onclick="fecharModalCadastro()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <form id="form-personagem" onsubmit="event.preventDefault(); salvarPersonagem();">
+            <input type="hidden" id="txtId">
+
+            <div class="modal-body">
+                <!-- Seção 1: Identidade -->
+                <div class="form-section">
+                        <span class="section-label">
+                            <i class="fa-regular fa-id-card"></i> Identificação
+                        </span>
+                    <div class="form-grid grid-identity" style="margin-bottom: 12px;">
+                        <div class="form-group">
+                            <label for="txtNome">Nome Completo</label>
+                            <input type="text" id="txtNome" class="form-input" placeholder="Ex: Geralt de Rívia" required autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtRaca">Raça / Linhagem</label>
+                            <input type="text" id="txtRaca" list="lista-racas" class="form-input" placeholder="Ex: Humano" required autocomplete="off">
+                            <datalist id="lista-racas">
+                                <option value="Humano">
+                                <option value="Alto Elfo">
+                                <option value="Elfo Silvestre">
+                                <option value="Anão da Montanha">
+                                <option value="Meio-Orc">
+                                <option value="Draconato">
+                                <option value="Tiefling">
+                                <option value="Halfling">
+                            </datalist>
+                        </div>
+                    </div>
+
+                    <div class="form-grid grid-identity-row2">
+                        <div class="form-group">
+                            <label for="txtClasse">Classe / Vocação</label>
+                            <input type="text" id="txtClasse" list="lista-classes" class="form-input" placeholder="Ex: Guerreiro" required autocomplete="off">
+                            <datalist id="lista-classes">
+                                <option value="Guerreiro">
+                                <option value="Mago">
+                                <option value="Ladino">
+                                <option value="Clérigo">
+                                <option value="Paladino">
+                                <option value="Bardo">
+                                <option value="Patrulheiro">
+                                <option value="Bruxo">
+                                <option value="Druida">
+                            </datalist>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtNivel">Nível (1 - 100)</label>
+                            <input type="number" id="txtNivel" class="form-input" value="1" min="1" max="100" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 2: Vitalidade & Alinhamento -->
+                <div class="form-section">
+                        <span class="section-label">
+                            <i class="fa-solid fa-heart-pulse"></i> Recursos & Alinhamento
+                        </span>
+                    <div class="form-grid grid-vitals">
+                        <div class="form-group">
+                            <label for="txtVida">Pontos de Vida (PV)</label>
+                            <input type="number" id="txtVida" class="form-input" value="10" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtMana">Pontos de Mana (PM)</label>
+                            <input type="number" id="txtMana" class="form-input" value="5" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtAlinhamento">Alinhamento Moral</label>
+                            <input type="text" id="txtAlinhamento" list="lista-alinhamentos" class="form-input" placeholder="Ex: Leal e Bom" required autocomplete="off">
+                            <datalist id="lista-alinhamentos">
+                                <option value="Leal e Bom">
+                                <option value="Neutro e Bom">
+                                <option value="Caótico e Bom">
+                                <option value="Leal e Neutro">
+                                <option value="Neutro Verdadeiro">
+                                <option value="Caótico e Neutro">
+                                <option value="Leal e Mau">
+                                <option value="Neutro e Mau">
+                                <option value="Caótico e Mau">
+                            </datalist>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção 3: Atributos -->
+                <div class="form-section">
+                        <span class="section-label">
+                            <i class="fa-solid fa-chart-simple"></i> Atributos Capitais
+                        </span>
+                    <div class="form-grid grid-attributes">
+                        <div class="form-group">
+                            <label for="txtForca" style="justify-content: center;">Força (FOR)</label>
+                            <input type="number" id="txtForca" class="form-input attribute-input" value="10" min="1" max="99" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtDestreza" style="justify-content: center;">Destreza (DES)</label>
+                            <input type="number" id="txtDestreza" class="form-input attribute-input" value="10" min="1" max="99" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtInteligencia" style="justify-content: center;">Inteligência (INT)</label>
+                            <input type="number" id="txtInteligencia" class="form-input attribute-input" value="10" min="1" max="99" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="fecharModalCadastro()">Cancelar</button>
+                <button type="submit" id="btnSalvar" class="btn btn-primary">
+                    <i class="fa-solid fa-check"></i> Salvar Aventureiro
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 7. TOAST NOTIFIER -->
+<div id="toast-msg" class="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toast-text">Mensagem do sistema</span>
 </div>
 
 <script>
+    /* ==========================================================================
+       GESTÃO DE ESTADO & PERSISTÊNCIA COMPATÍVEL
+       ========================================================================== */
     const API_URL = '/api/personagens';
+    const STORAGE_KEY = 'taverna_real_aventureiros_v2';
 
-    document.addEventListener('DOMContentLoaded', carregarPersonagens);
+    const AVENTUREIROS_INICIAIS = [
+        {
+            id: 1,
+            nome: 'Geralt de Rívia',
+            raca: 'Humano Mutado',
+            classe: 'Guerreiro',
+            nivel: 35,
+            pontosVida: 95,
+            pontosMana: 40,
+            atributoForca: 18,
+            atributoDestreza: 16,
+            atributoInteligencia: 14,
+            alinhamento: 'Neutro Verdadeiro'
+        },
+        {
+            id: 2,
+            nome: 'Yennefer de Vengerberg',
+            raca: 'Quarto-Elfa',
+            classe: 'Mago',
+            nivel: 42,
+            pontosVida: 60,
+            pontosMana: 98,
+            atributoForca: 10,
+            atributoDestreza: 14,
+            atributoInteligencia: 20,
+            alinhamento: 'Caótico e Bom'
+        },
+        {
+            id: 3,
+            nome: 'Gimli Filho de Glóin',
+            raca: 'Anão da Montanha',
+            classe: 'Guerreiro',
+            nivel: 28,
+            pontosVida: 90,
+            pontosMana: 10,
+            atributoForca: 19,
+            atributoDestreza: 12,
+            atributoInteligencia: 11,
+            alinhamento: 'Leal e Bom'
+        },
+        {
+            id: 4,
+            nome: 'Astarion Ancunín',
+            raca: 'Alto Elfo',
+            classe: 'Ladino',
+            nivel: 24,
+            pontosVida: 55,
+            pontosMana: 35,
+            atributoForca: 11,
+            atributoDestreza: 19,
+            atributoInteligencia: 15,
+            alinhamento: 'Caótico e Neutro'
+        },
+        {
+            id: 5,
+            nome: 'Jaskier Dandelion',
+            raca: 'Humano',
+            classe: 'Bardo',
+            nivel: 18,
+            pontosVida: 45,
+            pontosMana: 65,
+            atributoForca: 9,
+            atributoDestreza: 14,
+            atributoInteligencia: 16,
+            alinhamento: 'Caótico e Bom'
+        }
+    ];
 
-    async function carregarPersonagens() {
-        const res = await fetch(API_URL);
-        const dados = await res.json();
+    let listaPersonagensCache = [];
+    let idLinhaSelecionada = null;
+    let filtroClasseAtivo = '';
+
+    document.addEventListener('DOMContentLoaded', () => {
+        carregarPersonagens();
+
+        // Suporte para fechar modal com tecla ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') fecharModalCadastro();
+        });
+    });
+
+    // Ícone moderno por classe
+    function obterIconeClasse(classe) {
+        if (!classe) return 'fa-solid fa-shield';
+        const c = classe.toLowerCase();
+        if (c.includes('guerreir') || c.includes('warrior') || c.includes('bárbar')) return 'fa-solid fa-shield-halved';
+        if (c.includes('mag') || c.includes('feiticeir') || c.includes('brux')) return 'fa-solid fa-wand-magic-sparkles';
+        if (c.includes('ladin') || c.includes('rogue')) return 'fa-solid fa-mask';
+        if (c.includes('clérig') || c.includes('paladin')) return 'fa-solid fa-sun';
+        if (c.includes('ranger') || c.includes('arqueir') || c.includes('patrulheir')) return 'fa-solid fa-bullseye';
+        if (c.includes('bard')) return 'fa-solid fa-music';
+        if (c.includes('druid')) return 'fa-solid fa-leaf';
+        return 'fa-solid fa-user-shield';
+    }
+
+    // Estilização do alinhamento moral
+    function obterStatusMoral(alinhamento) {
+        if (!alinhamento) return { badge: 'badge-subtle', texto: 'Neutro' };
+        const a = alinhamento.toLowerCase();
+        if (a.includes('bom') || a.includes('good')) {
+            return { badge: 'badge-success', texto: alinhamento };
+        }
+        if (a.includes('mau') || a.includes('evil')) {
+            return { badge: 'badge-danger', texto: alinhamento };
+        }
+        return { badge: 'badge-warning', texto: alinhamento };
+    }
+
+    // Modal
+    function abrirModalCadastro() {
+        document.getElementById('modal-cadastro').classList.add('open');
+        document.getElementById('txtNome').focus();
+    }
+
+    function fecharModalCadastro() {
+        document.getElementById('modal-cadastro').classList.remove('open');
+        limparFormulario();
+    }
+
+    function fecharModalAoClicarFora(e) {
+        if (e.target.id === 'modal-cadastro') {
+            fecharModalCadastro();
+        }
+    }
+
+    // Notificação Toast
+    function notificar(msg, icone = 'fa-solid fa-circle-check') {
+        const toast = document.getElementById('toast-msg');
+        const text = document.getElementById('toast-text');
+        text.innerHTML = msg;
+        toast.querySelector('i').className = icone;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // Carregar dados
+    async function carregarPersonagens(notificarSync = false) {
+        let carregouApi = false;
+        try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 1200);
+            const res = await fetch(API_URL, { signal: controller.signal });
+            clearTimeout(timeoutId);
+            if (res.ok) {
+                listaPersonagensCache = await res.json();
+                salvarNoStorage(listaPersonagensCache);
+                carregouApi = true;
+            }
+        } catch (error) {
+            // Fallback silencioso para LocalStorage
+        }
+
+        if (!carregouApi) {
+            const dadosLocais = localStorage.getItem(STORAGE_KEY);
+            if (dadosLocais) {
+                try {
+                    listaPersonagensCache = JSON.parse(dadosLocais);
+                } catch(e) {
+                    listaPersonagensCache = [...AVENTUREIROS_INICIAIS];
+                }
+            } else {
+                listaPersonagensCache = [...AVENTUREIROS_INICIAIS];
+                salvarNoStorage(listaPersonagensCache);
+            }
+        }
+
+        renderizarTabela(listaPersonagensCache);
+        atualizarKPIs(listaPersonagensCache);
+        if (notificarSync) {
+            notificar('Lista de aventureiros sincronizada com sucesso!', 'fa-solid fa-arrows-rotate');
+        }
+    }
+
+    function salvarNoStorage(dados) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(dados));
+    }
+
+    // Atualização de Métricas
+    function atualizarKPIs(dados) {
+        const total = dados.length;
+        document.getElementById('kpi-recrutados').textContent = total;
+
+        const capacidadeMaxima = 20;
+        const ocupacaoPerc = Math.min(Math.round((total / capacidadeMaxima) * 100), 100);
+        document.getElementById('kpi-ocupacao').textContent = `${ocupacaoPerc}%`;
+
+        if (total > 0) {
+            const somaNiveis = dados.reduce((acc, p) => acc + (parseInt(p.nivel) || 1), 0);
+            const media = (somaNiveis / total).toFixed(1);
+            document.getElementById('kpi-nivel-medio').textContent = media;
+        } else {
+            document.getElementById('kpi-nivel-medio').textContent = '0.0';
+        }
+
+        const leais = dados.filter(p => {
+            const a = (p.alinhamento || '').toLowerCase();
+            return a.includes('bom') || a.includes('leal');
+        }).length;
+        document.getElementById('kpi-leais').textContent = leais;
+    }
+
+    // Renderização da Tabela
+    function renderizarTabela(dados) {
         const tbody = document.getElementById('tabela-personagens');
-        tbody.innerHTML = '';
+        const emptyState = document.getElementById('empty-state');
+        const badgeTotal = document.getElementById('badge-total');
+        const footerCount = document.getElementById('footer-count');
 
-        dados.forEach(p => {
-            tbody.innerHTML += `
-                    <tr>
-                        <td>${p.id}</td>
-                        <td><strong>${p.nome}</strong></td>
-                        <td>${p.raca}</td>
-                        <td>${p.classe}</td>
-                        <td>${p.nivel}</td>
-                        <td>${p.pontosVida}</td>
-                        <td>${p.pontosMana}</td>
-                        <td>${p.atributoForca}/${p.atributoDestreza}/${p.atributoInteligencia}</td>
-                        <td>${p.alinhamento}</td>
-                        <td>
-                            <button onclick='editarPersonagem(${JSON.stringify(p)})'>Editar</button>
-                            <button class="btn-danger" onclick="excluirPersonagem(${p.id})">Expulsar</button>
-                        </td>
-                    </tr>
+        tbody.innerHTML = '';
+        badgeTotal.textContent = `${dados.length} Registrados`;
+        footerCount.textContent = `Mostrando ${dados.length} ${dados.length === 1 ? 'aventureiro' : 'aventureiros'}`;
+
+        if (!dados || dados.length === 0) {
+            emptyState.style.display = 'block';
+            return;
+        }
+
+        emptyState.style.display = 'none';
+
+        dados.forEach((p, index) => {
+            const iconeClasse = obterIconeClasse(p.classe);
+            const statusMoral = obterStatusMoral(p.alinhamento);
+            const jsonPersonagem = JSON.stringify(p).replace(/"/g, '&quot;');
+
+            const hpWidth = Math.min(Math.max(((p.pontosVida || 10) / 100) * 100, 8), 100);
+            const mpWidth = Math.min(Math.max(((p.pontosMana || 0) / 100) * 100, 8), 100);
+
+            const isSelected = idLinhaSelecionada === p.id;
+            const rowClass = isSelected ? 'row-selected' : '';
+
+            const tr = document.createElement('tr');
+            tr.className = rowClass;
+            tr.onclick = (e) => {
+                if (e.target.closest('button') || e.target.closest('.table-checkbox')) return;
+                selecionarLinha(p.id, tr);
+            };
+
+            tr.innerHTML = `
+                    <td style="text-align: center;">
+                        <span class="table-checkbox ${isSelected ? 'checked' : ''}" onclick="event.stopPropagation(); alternarCheckboxLinha(this, ${p.id}, tr)">
+                            <i class="fa-solid fa-check" style="${isSelected ? 'display: block;' : 'display: none;'} font-size: 10px;"></i>
+                        </span>
+                    </td>
+                    <td>
+                        <div class="adventurer-cell">
+                            <div class="adventurer-avatar">
+                                <i class="${iconeClasse}"></i>
+                            </div>
+                            <div class="adventurer-details">
+                                <span class="adventurer-name">${escapeHtml(p.nome)}</span>
+                                <span class="adventurer-id">#${String(p.id).padStart(3, '0')}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="badge badge-subtle"><i class="${iconeClasse}"></i> ${escapeHtml(p.classe)}</span>
+                    </td>
+                    <td>
+                        <span style="font-weight: 500; color: var(--text-secondary);">${escapeHtml(p.raca)}</span>
+                    </td>
+                    <td style="text-align: center;">
+                        <span class="badge badge-level">Nv ${p.nivel}</span>
+                    </td>
+                    <td>
+                        <div class="vitals-container">
+                            <div>
+                                <div class="vital-row">
+                                    <span class="vital-hp-label">PV</span>
+                                    <span>${p.pontosVida}</span>
+                                </div>
+                                <div class="progress-track">
+                                    <div class="progress-fill-hp" style="width: ${hpWidth}%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="vital-row">
+                                    <span class="vital-mp-label">PM</span>
+                                    <span>${p.pontosMana}</span>
+                                </div>
+                                <div class="progress-track">
+                                    <div class="progress-fill-mp" style="width: ${mpWidth}%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="text-align: center;">
+                        <div class="triad-badge">
+                            ${p.atributoForca} <span>/</span> ${p.atributoDestreza} <span>/</span> ${p.atributoInteligencia}
+                        </div>
+                    </td>
+                    <td>
+                        <span class="badge ${statusMoral.badge}">
+                            ${escapeHtml(statusMoral.texto)}
+                        </span>
+                    </td>
+                    <td style="text-align: right; padding-right: 18px;">
+                        <div class="row-actions">
+                            <button type="button" class="btn-table-action" title="Editar" onclick='editarPersonagem(${jsonPersonagem})'>
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                            <button type="button" class="btn-table-action delete" title="Excluir" onclick="excluirPersonagem(${p.id})">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </td>
                 `;
+            tbody.appendChild(tr);
         });
     }
 
+    function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+
+    // Seleção de linhas
+    function selecionarLinha(id, trElement) {
+        idLinhaSelecionada = id;
+        document.querySelectorAll('.data-table tbody tr').forEach(r => {
+            r.classList.remove('row-selected');
+            const chk = r.querySelector('.table-checkbox');
+            if (chk) {
+                chk.classList.remove('checked');
+                chk.querySelector('i').style.display = 'none';
+            }
+        });
+
+        trElement.classList.add('row-selected');
+        const checkbox = trElement.querySelector('.table-checkbox');
+        if (checkbox) {
+            checkbox.classList.add('checked');
+            checkbox.querySelector('i').style.display = 'block';
+        }
+    }
+
+    function alternarCheckboxLinha(checkboxEl, id, trElement) {
+        const isChecked = checkboxEl.classList.contains('checked');
+        if (isChecked) {
+            checkboxEl.classList.remove('checked');
+            checkboxEl.querySelector('i').style.display = 'none';
+            trElement.classList.remove('row-selected');
+            if (idLinhaSelecionada === id) idLinhaSelecionada = null;
+        } else {
+            selecionarLinha(id, trElement);
+        }
+    }
+
+    function alternarTodosCheckboxes(masterCheckbox) {
+        const isChecked = masterCheckbox.classList.toggle('checked');
+        masterCheckbox.querySelector('i').style.display = isChecked ? 'block' : 'none';
+
+        document.querySelectorAll('.data-table tbody tr').forEach(tr => {
+            const chk = tr.querySelector('.table-checkbox');
+            if (isChecked) {
+                tr.classList.add('row-selected');
+                if (chk) {
+                    chk.classList.add('checked');
+                    chk.querySelector('i').style.display = 'block';
+                }
+            } else {
+                tr.classList.remove('row-selected');
+                if (chk) {
+                    chk.classList.remove('checked');
+                    chk.querySelector('i').style.display = 'none';
+                }
+            }
+        });
+    }
+
+    // Pesquisa e Filtros
+    function filtrarAventureiros() {
+        const termo = document.getElementById('filtro-busca').value.toLowerCase().trim();
+        let dados = listaPersonagensCache;
+
+        if (filtroClasseAtivo) {
+            dados = dados.filter(p => p.classe && p.classe.toLowerCase().includes(filtroClasseAtivo.toLowerCase()));
+        }
+
+        if (termo) {
+            dados = dados.filter(p =>
+                (p.nome && p.nome.toLowerCase().includes(termo)) ||
+                (p.raca && p.raca.toLowerCase().includes(termo)) ||
+                (p.classe && p.classe.toLowerCase().includes(termo)) ||
+                (p.alinhamento && p.alinhamento.toLowerCase().includes(termo))
+            );
+        }
+
+        renderizarTabela(dados);
+    }
+
+    function filtrarPorClasse(classe, botaoEl) {
+        document.querySelectorAll('.filter-group .filter-btn').forEach(btn => btn.classList.remove('active'));
+        if (botaoEl) botaoEl.classList.add('active');
+        filtroClasseAtivo = classe;
+        filtrarAventureiros();
+    }
+
+    function ordenarPorNivel() {
+        listaPersonagensCache.sort((a, b) => (b.nivel || 0) - (a.nivel || 0));
+        renderizarTabela(listaPersonagensCache);
+        notificar('Aventureiros ordenados pelo nível mais alto!', 'fa-solid fa-arrow-up-wide-short');
+    }
+
+    function restaurarDadosIniciais() {
+        if (confirm('Deseja restaurar a lista com os dados padrão?')) {
+            listaPersonagensCache = [...AVENTUREIROS_INICIAIS];
+            salvarNoStorage(listaPersonagensCache);
+            renderizarTabela(listaPersonagensCache);
+            atualizarKPIs(listaPersonagensCache);
+            notificar('Registros restaurados com sucesso!', 'fa-solid fa-rotate-left');
+        }
+    }
+
+    // CRUD: Salvar (Create & Update)
     async function salvarPersonagem() {
         const id = document.getElementById('txtId').value;
+        const nome = document.getElementById('txtNome').value.trim();
+        const raca = document.getElementById('txtRaca').value.trim();
+        const classe = document.getElementById('txtClasse').value.trim();
+        const nivel = parseInt(document.getElementById('txtNivel').value);
+        const vida = parseInt(document.getElementById('txtVida').value);
+        const mana = parseInt(document.getElementById('txtMana').value);
+        const forca = parseInt(document.getElementById('txtForca').value);
+        const destreza = parseInt(document.getElementById('txtDestreza').value);
+        const inteligencia = parseInt(document.getElementById('txtInteligencia').value);
+        const alinhamento = document.getElementById('txtAlinhamento').value.trim();
+
+        if (!nome || !raca || !classe || isNaN(nivel) || isNaN(vida) || isNaN(mana) || isNaN(forca) || isNaN(destreza) || isNaN(inteligencia) || !alinhamento) {
+            notificar('Preencha todos os campos obrigatórios.', 'fa-solid fa-triangle-exclamation');
+            return;
+        }
+
         const personagem = {
-            nome: document.getElementById('txtNome').value,
-            raca: document.getElementById('txtRaca').value,
-            classe: document.getElementById('txtClasse').value,
-            nivel: parseInt(document.getElementById('txtNivel').value),
-            pontosVida: parseInt(document.getElementById('txtVida').value),
-            pontosMana: parseInt(document.getElementById('txtMana').value),
-            atributoForca: parseInt(document.getElementById('txtForca').value),
-            atributoDestreza: parseInt(document.getElementById('txtDestreza').value),
-            atributoInteligencia: parseInt(document.getElementById('txtInteligencia').value),
-            alinhamento: document.getElementById('txtAlinhamento').value
+            id: id ? parseInt(id) : (Date.now() % 10000),
+            nome: nome,
+            raca: raca,
+            classe: classe,
+            nivel: nivel,
+            pontosVida: vida,
+            pontosMana: mana,
+            atributoForca: forca,
+            atributoDestreza: destreza,
+            atributoInteligencia: inteligencia,
+            alinhamento: alinhamento
         };
 
-        const metodo = id ? 'PUT' : 'POST';
-        const url = id ? `${API_URL}/${id}` : API_URL;
+        // Tentativa de envio para API REST
+        try {
+            const metodo = id ? 'PUT' : 'POST';
+            const url = id ? `${API_URL}/${id}` : API_URL;
+            await fetch(url, {
+                method: metodo,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(personagem)
+            });
+        } catch (e) {
+            // Fallback LocalStorage
+        }
 
-        await fetch(url, {
-            method: metodo,
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(personagem)
-        });
+        if (id) {
+            const index = listaPersonagensCache.findIndex(p => p.id === parseInt(id));
+            if (index !== -1) {
+                listaPersonagensCache[index] = personagem;
+            } else {
+                listaPersonagensCache.push(personagem);
+            }
+        } else {
+            listaPersonagensCache.unshift(personagem);
+        }
 
-        limparFormulario();
-        carregarPersonagens();
+        salvarNoStorage(listaPersonagensCache);
+        fecharModalCadastro();
+        renderizarTabela(listaPersonagensCache);
+        atualizarKPIs(listaPersonagensCache);
+
+        notificar(
+            id ? `Aventureiro <strong>${nome}</strong> atualizado com sucesso!` : `Aventureiro <strong>${nome}</strong> cadastrado com sucesso!`,
+            'fa-solid fa-circle-check'
+        );
     }
 
+    // CRUD: Editar
     function editarPersonagem(p) {
         document.getElementById('txtId').value = p.id;
         document.getElementById('txtNome').value = p.nome;
@@ -131,18 +1919,59 @@
         document.getElementById('txtDestreza').value = p.atributoDestreza;
         document.getElementById('txtInteligencia').value = p.atributoInteligencia;
         document.getElementById('txtAlinhamento').value = p.alinhamento;
+
+        document.getElementById('modal-titulo').innerHTML = `<i class="fa-solid fa-pen-to-square" style="color: var(--primary);"></i> Editar Aventureiro (#${p.id})`;
+        document.getElementById('btnSalvar').innerHTML = `<i class="fa-solid fa-check"></i> Salvar Alterações`;
+
+        abrirModalCadastro();
     }
 
+    // CRUD: Excluir
     async function excluirPersonagem(id) {
-        if (confirm('Tem certeza que deseja expulsar este aventureiro?')) {
+        const aventureiro = listaPersonagensCache.find(p => p.id === id);
+        const nome = aventureiro ? aventureiro.nome : 'o aventureiro';
+        const confirmar = confirm(`Tem certeza que deseja remover ${nome} da guilda?`);
+        if (!confirmar) return;
+
+        try {
             await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
-            carregarPersonagens();
+        } catch (e) {
+            // Fallback LocalStorage
         }
+
+        listaPersonagensCache = listaPersonagensCache.filter(p => p.id !== id);
+        salvarNoStorage(listaPersonagensCache);
+        renderizarTabela(listaPersonagensCache);
+        atualizarKPIs(listaPersonagensCache);
+
+        notificar(`<strong>${nome}</strong> foi removido do cadastro.`, 'fa-solid fa-trash');
     }
 
+    // Limpar formulário
     function limparFormulario() {
         document.getElementById('form-personagem').reset();
         document.getElementById('txtId').value = '';
+        document.getElementById('modal-titulo').innerHTML = `<i class="fa-solid fa-user-plus" style="color: var(--primary);"></i> Novo Aventureiro`;
+        document.getElementById('btnSalvar').innerHTML = `<i class="fa-solid fa-check"></i> Salvar Aventureiro`;
+    }
+
+    // Exportar JSON
+    function exportarTomo() {
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(listaPersonagensCache, null, 2));
+        const downloadAnchor = document.createElement('a');
+        downloadAnchor.setAttribute("href", dataStr);
+        downloadAnchor.setAttribute("download", `aventureiros_${new Date().toISOString().slice(0,10)}.json`);
+        document.body.appendChild(downloadAnchor);
+        downloadAnchor.click();
+        downloadAnchor.remove();
+        notificar('Arquivo JSON exportado com sucesso!', 'fa-solid fa-file-export');
+    }
+
+    // Abas da Navbar
+    function trocarAba(btn) {
+        document.querySelectorAll('.nav-menu .nav-link').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        notificar(`Navegando para: <strong>${btn.textContent}</strong>`, 'fa-solid fa-compass');
     }
 </script>
 </body>
