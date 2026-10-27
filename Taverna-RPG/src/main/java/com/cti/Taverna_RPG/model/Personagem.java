@@ -19,7 +19,7 @@ public class Personagem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "Nome", nullable = false)
+    @Column(name = "Nome", nullable = false, unique = true)
     private String nome;
 
     @Column(name = "Raca")
@@ -29,22 +29,22 @@ public class Personagem {
     private String classe;
 
     @Column(name = "Nivel")
-    private int nivel;
+    private Integer nivel;
 
     @Column(name = "Pontos_Vida")
-    private int pontosVida;
+    private Integer pontosVida;
 
     @Column(name = "Pontos_Mana")
-    private int pontosMana;
+    private Integer pontosMana;
 
     @Column(name = "Atributo_Forca")
-    private int atributoForca;
+    private Integer atributoForca;
 
     @Column(name = "Atributo_Destreza")
-    private int atributoDestreza;
+    private Integer atributoDestreza;
 
     @Column(name = "Atributo_Inteligencia")
-    private int atributoInteligencia;
+    private Integer atributoInteligencia;
 
     @Column(name = "Alinhamento")
     private String alinhamento;

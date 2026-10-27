@@ -1,0 +1,244 @@
+{
+	"info": {
+		"_postman_id": "b3e9b14f-45b7-4c8d-9051-2a9f45f2f111",
+		"name": "Taverna RPG - API",
+		"description": "Coleção de requisições da API REST Taverna RPG. O método PUT suporta atualização parcial sem a necessidade de preencher todos os campos.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Listar Todos os Personagens",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/personagens",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personagens"
+					]
+				},
+				"description": "Retorna todos os personagens cadastrados no PostgreSQL."
+			},
+			"response": []
+		},
+		{
+			"name": "2. Filtrar Personagens por Classe",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/personagens?classe=Guerreiro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personagens"
+					],
+					"query": [
+						{
+							"key": "classe",
+							"value": "Guerreiro"
+						}
+					]
+				},
+				"description": "Filtra personagens pela classe (ex: Guerreiro, Mago, Ladino)."
+			},
+			"response": []
+		},
+		{
+			"name": "3. Criar Personagem (POST)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nome\": \"Thorgar Machado-de-Ferro\",\n  \"raca\": \"Anão\",\n  \"classe\": \"Guerreiro\",\n  \"nivel\": 1,\n  \"pontosVida\": 30,\n  \"pontosMana\": 10,\n  \"atributoForca\": 16,\n  \"atributoDestreza\": 10,\n  \"atributoInteligencia\": 8,\n  \"alinhamento\": \"Leal e Neutro\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/personagens",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personagens"
+					]
+				},
+				"description": "Cadastra um novo personagem e retorna o JSON com o ID gerado."
+			},
+			"response": []
+		},
+		{
+			"name": "4. Buscar Personagem por ID (GET)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/personagens/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personagens",
+						"1"
+					]
+				},
+				"description": "Busca detalhes de um aventureiro através do ID numérico."
+			},
+			"response": []
+		},
+		{
+			"name": "5. Buscar Personagem por Nome (GET)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/personagens/Thorgar Machado-de-Ferro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personagens",
+						"Thorgar Machado-de-Ferro"
+					]
+				},
+				"description": "Busca detalhes de um aventureiro pelo nome."
+			},
+			"response": []
+		},
+		{
+			"name": "6. PUT Parcial por ID (Apenas Pontos de Vida e Nível)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"pontosVida\": 85,\n  \"nivel\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/personagens/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personagens",
+						"1"
+					]
+				},
+				"description": "Atualização via PUT sem necessidade de preencher todos os campos. Apenas os campos enviados são alterados; os demais campos existentes são preservados intactos."
+			},
+			"response": []
+		},
+		{
+			"name": "7. PUT Parcial por Nome (Apenas Alinhamento)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"alinhamento\": \"Neutro e Bom\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/personagens/Thorgar Machado-de-Ferro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personagens",
+						"Thorgar Machado-de-Ferro"
+					]
+				},
+				"description": "Atualização via PUT usando o nome do personagem diretamente na URL e enviando apenas os campos desejados."
+			},
+			"response": []
+		},
+		{
+			"name": "8. Deletar Personagem por ID (DELETE)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/personagens/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personagens",
+						"1"
+					]
+				},
+				"description": "Remove um personagem pelo ID numérico (retorna 204 No Content)."
+			},
+			"response": []
+		},
+		{
+			"name": "9. Deletar Personagem por Nome (DELETE)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/personagens/Thorgar Machado-de-Ferro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personagens",
+						"Thorgar Machado-de-Ferro"
+					]
+				},
+				"description": "Remove um personagem pelo nome (retorna 204 No Content)."
+			},
+			"response": []
+		}
+	]
+}

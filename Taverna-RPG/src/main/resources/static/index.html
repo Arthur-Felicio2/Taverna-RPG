@@ -1934,7 +1934,8 @@
         if (!confirmar) return;
 
         try {
-            await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+            const identificador = (aventureiro && aventureiro.nome) ? encodeURIComponent(aventureiro.nome) : id;
+            await fetch(`${API_URL}/${identificador}`, { method: 'DELETE' });
         } catch (e) {
             // Fallback LocalStorage
         }
