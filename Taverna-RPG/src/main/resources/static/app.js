@@ -770,7 +770,11 @@ async function salvarPersonagem() {
         });
 
         if (!res.ok) {
-            notificar('Erro ao selar no PostgreSQL (verifique se o nome já existe no códice).', 'fa-solid fa-circle-exclamation');
+            const errData = await res.json().catch(() => null);
+            const msgErro = errData?.message
+                ? escapeHtml(errData.message)
+                : 'Erro ao selar no PostgreSQL (verifique se o nome já existe no códice).';
+            notificar(msgErro, 'fa-solid fa-circle-exclamation');
             return;
         }
         registroPersistido = await res.json();
@@ -930,6 +934,9 @@ async function executarExclusao(id) {
         const res = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
         if (res.ok || res.status === 204 || res.status === 404) {
             atualizarIndicadorConexao(true);
+        } else {
+            notificar('Erro ao banir aventureiro no servidor PostgreSQL.', 'fa-solid fa-circle-exclamation');
+            return;
         }
     } catch (error) {
         atualizarIndicadorConexao(false);

@@ -2,6 +2,7 @@ package com.cti.Taverna_RPG.controller;
 
 import com.cti.Taverna_RPG.model.Personagem;
 import com.cti.Taverna_RPG.service.PersonagemService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class PersonagemController {
 
     // Criar novo personagem (POST /personagens ou POST /api/personagens)
     @PostMapping
-    public ResponseEntity<Personagem> criar(@RequestBody Personagem personagem) {
+    public ResponseEntity<Personagem> criar(@Valid @RequestBody Personagem personagem) {
         Personagem novoPersonagem = service.salvar(personagem);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoPersonagem);
     }
@@ -44,7 +45,7 @@ public class PersonagemController {
     @PutMapping("/{identificador}")
     public ResponseEntity<Personagem> atualizar(
             @PathVariable("identificador") String identificador,
-            @RequestBody Personagem personagem) {
+            @Valid @RequestBody Personagem personagem) {
         return service.atualizarPorIdOuNome(identificador, personagem)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -54,7 +55,7 @@ public class PersonagemController {
     @PatchMapping("/{identificador}")
     public ResponseEntity<Personagem> atualizarParcial(
             @PathVariable("identificador") String identificador,
-            @RequestBody Personagem personagem) {
+            @Valid @RequestBody Personagem personagem) {
         return service.atualizarPorIdOuNome(identificador, personagem)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
