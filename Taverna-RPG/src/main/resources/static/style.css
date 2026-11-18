@@ -1,166 +1,281 @@
 /* ==========================================================================
-   TAVERNA REAL - SISTEMA DE GESTÃO DE AVENTUREIROS (PEOPLE DIRECTORY SAAS)
-   Design System: Modern SaaS Soft-Pill UI x Nobreza de Fantasia Medieval
+   TAVERNA REAL & ORDEM DOS TEMPLÁRIOS
+   Estética: Gótico Medieval Clássico (Castlevania) x Arte Sacra Templária
    ========================================================================== */
 
 :root {
-    /* Paleta Madeira Nobre & Lareira Imperial */
-    --tavern-bg: #0f0b08;
-    --tavern-surface: #19120c;
-    --tavern-card: #221811;
-    --tavern-card-hover: #2c1f16;
-    --tavern-border: rgba(212, 175, 55, 0.22);
-    --tavern-border-light: rgba(212, 175, 55, 0.12);
+    /* Pedra de Catedral, Obsidiana & Veludo Noturno */
+    --bg-abyss: #080609;
+    --bg-stone: #100c11;
+    --bg-panel: #171219;
+    --bg-panel-elevated: #201922;
+    --bg-inset: #0c090d;
 
-    /* Ouro Imperial, Âmbar & Latão */
-    --gold-pure: #ffd700;
-    --gold-primary: #e5a823;
-    --gold-bright: #f5b738;
-    --gold-amber: #f59e0b;
-    --gold-light: #fef3c7;
-    --gold-glow: rgba(245, 183, 56, 0.35);
-    --brass-muted: #8c734b;
+    /* Pergaminho Antigo & Códice Iluminado */
+    --vellum-bg: #181316;
+    --vellum-light: #e8dcc4;
+    --vellum-ink: #241911;
 
-    /* Card da Tabela (Pergaminho de Luxo / Marfim Aquecido) */
-    --parchment-sheet: #fbf9f2;
-    --parchment-row-alt: #f6f2e7;
-    --parchment-border: #e6ddc8;
-    --text-dark: #1e150d;
-    --text-dark-muted: #6e5d4e;
+    /* Ouro Bizantino, Latão Envelhecido & Ferro Forjado */
+    --gold-bright: #f0cf7b;
+    --gold-primary: #c9a24d;
+    --gold-dim: #7d622b;
+    --gold-border: rgba(201, 162, 77, 0.34);
+    --gold-border-strong: rgba(240, 207, 123, 0.65);
+    --gold-glow: rgba(201, 162, 77, 0.25);
+    --iron-border: #332936;
 
-    /* Destaque Ativo de Linha SaaS (Amarelo-Ouro Solar) */
-    --row-highlight-bg: #fde68a;
-    --row-highlight-border: #f59e0b;
-    --row-highlight-text: #1a1208;
+    /* Carmesim Templário & Sangue de Castlevania */
+    --crimson-deep: #4e0911;
+    --crimson-primary: #8f1622;
+    --crimson-bright: #c82333;
+    --crimson-glow: rgba(200, 35, 51, 0.35);
 
-    /* Gemas e Recursos */
-    --ruby-vitality: #c0292b;
-    --ruby-bg: rgba(192, 41, 43, 0.12);
-    --sapphire-mana: #1e6091;
-    --sapphire-bg: rgba(30, 96, 145, 0.14);
+    /* Recursos Vitais & Arcano */
+    --hp-color: #b81d2c;
+    --hp-bright: #e63946;
+    --mp-color: #1f4e8c;
+    --mp-bright: #4895ef;
 
-    /* Status & Alinhamentos (Soft Pill Dots) */
-    --status-good-bg: #e6f4ea;
-    --status-good-text: #137333;
-    --status-good-dot: #10b981;
+    /* Alinhamentos / Selos de Cera */
+    --seal-good-bg: rgba(26, 92, 62, 0.24);
+    --seal-good-text: #7ae0ab;
+    --seal-good-border: rgba(122, 224, 171, 0.4);
 
-    --status-neutral-bg: #fef7e0;
-    --status-neutral-text: #b06000;
-    --status-neutral-dot: #f59e0b;
+    --seal-neutral-bg: rgba(181, 130, 38, 0.22);
+    --seal-neutral-text: #f3cf7a;
+    --seal-neutral-border: rgba(243, 207, 122, 0.4);
 
-    --status-evil-bg: #fce8e6;
-    --status-evil-text: #c5221f;
-    --status-evil-dot: #ef4444;
+    --seal-evil-bg: rgba(143, 22, 34, 0.3);
+    --seal-evil-text: #ff8a93;
+    --seal-evil-border: rgba(255, 138, 147, 0.45);
 
-    /* Tipografia */
-    --font-heading: 'Cinzel', 'Marcellus', Georgia, serif;
-    --font-ui: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-serif: 'Marcellus', Georgia, serif;
+    /* Tipografia Clássica */
+    --font-display: 'Cinzel Decorative', 'Cinzel', Georgia, serif;
+    --font-heading: 'Cinzel', Georgia, serif;
+    --font-body: 'Cormorant Garamond', Georgia, serif;
+    --font-ui: 'Cinzel', Georgia, serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-    /* Raios de Arredondamento (Soft Pill UI) */
-    --radius-pill: 9999px;
-    --radius-card: 22px;
-    --radius-modal: 20px;
-    --radius-input: 12px;
+    /* Texto */
+    --text-ivory: #efe6d5;
+    --text-parchment: #c9bca6;
+    --text-muted: #8c7f70;
 
-    /* Sombras */
-    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.35);
-    --shadow-float: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(245, 183, 56, 0.08);
-    --shadow-row-glow: 0 4px 15px rgba(245, 183, 56, 0.25);
-    --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Sombras e Geometria */
+    --shadow-crypt: 0 16px 40px rgba(0, 0, 0, 0.78);
+    --shadow-relic: 0 8px 24px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(240, 207, 123, 0.14);
+    --radius-sharp: 3px;
+    --radius-bevel: 6px;
+    --transition: 0.22s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Reset Global */
-* {
+/* Reset & Base */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
 }
 
-body {
-    font-family: var(--font-ui);
-    font-size: 14px;
-    color: #e5ded4;
-    background-color: var(--tavern-bg);
-    background-image:
-        radial-gradient(circle at 50% -10%, rgba(245, 183, 56, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 10% 20%, rgba(197, 138, 41, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 90% 20%, rgba(197, 138, 41, 0.08) 0%, transparent 40%),
-        linear-gradient(180deg, #130d09 0%, #0b0805 100%);
-    background-attachment: fixed;
-    min-height: 100vh;
-    padding: 24px 28px 60px;
+html {
+    scroll-behavior: smooth;
 }
 
-.dashboard-layout {
-    max-width: 1440px;
-    margin: 0 auto;
+body {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    color: var(--text-ivory);
+    background-color: var(--bg-abyss);
+    background-image:
+        radial-gradient(ellipse 80% 45% at 50% -5%, rgba(143, 22, 34, 0.24) 0%, transparent 65%),
+        radial-gradient(circle at 15% 25%, rgba(201, 162, 77, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 25%, rgba(201, 162, 77, 0.08) 0%, transparent 40%),
+        repeating-linear-gradient(
+            45deg,
+            rgba(255, 255, 255, 0.012) 0px,
+            rgba(255, 255, 255, 0.012) 1px,
+            transparent 1px,
+            transparent 16px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            rgba(0, 0, 0, 0.2) 0px,
+            rgba(0, 0, 0, 0.2) 1px,
+            transparent 1px,
+            transparent 16px
+        ),
+        linear-gradient(180deg, #0e0a10 0%, #070508 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+/* Scrollbar Gótica */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-abyss);
+    border-left: 1px solid var(--iron-border);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #4b3a24 0%, #2c2015 100%);
+    border: 1px solid var(--gold-dim);
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-dim);
+}
+
+button, input, select {
+    font-family: inherit;
 }
 
 /* ==========================================================================
-   1. CABEÇALHO SUPERIOR (TOP NAVIGATION EM PÍLULA FLUTUANTE)
+   1. MOLDURAS & ORNAMENTOS TEMPLÁRIOS / CASTLEVANIA
    ========================================================================== */
-.top-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(25, 18, 12, 0.88);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid var(--tavern-border);
-    border-radius: var(--radius-pill);
-    padding: 8px 14px 8px 18px;
-    box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-    margin-bottom: 32px;
-    gap: 16px;
+.gothic-frame {
+    position: relative;
+    background: linear-gradient(180deg, rgba(28, 21, 31, 0.96) 0%, rgba(16, 12, 18, 0.98) 100%);
+    border: 1px solid var(--gold-border);
+    border-radius: var(--radius-bevel);
+    box-shadow: var(--shadow-relic);
 }
 
-/* Logo Heráldico em Pílula */
-.brand-pill {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: var(--gold-bright);
+.gothic-frame::before {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1px solid rgba(201, 162, 77, 0.14);
+    border-radius: 2px;
+    pointer-events: none;
 }
 
-.brand-crest {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #f5b738 0%, #aa771c 100%);
-    border: 2px solid var(--gold-pure);
+.templar-divider {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #120b05;
-    font-size: 18px;
-    box-shadow: 0 0 12px var(--gold-glow);
+    gap: 14px;
+    margin: 22px 0;
+    color: var(--gold-primary);
 }
 
-.brand-text {
+.templar-divider::before,
+.templar-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--gold-dim) 50%, var(--gold-primary) 100%);
+}
+
+.templar-divider::after {
+    background: linear-gradient(90deg, var(--gold-primary) 0%, var(--gold-dim) 50%, transparent 100%);
+}
+
+.templar-divider svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 6px var(--gold-glow));
+}
+
+/* ==========================================================================
+   2. CABEÇALHO DA CIDADELA (NAVBAR GÓTICA)
+   ========================================================================== */
+.citadel-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: linear-gradient(180deg, rgba(17, 12, 18, 0.98) 0%, rgba(11, 8, 12, 0.96) 100%);
+    border-bottom: 2px solid var(--gold-dim);
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.85), 0 1px 0 rgba(240, 207, 123, 0.18);
+    backdrop-filter: blur(10px);
+}
+
+.citadel-header::after {
+    content: "";
+    display: block;
+    height: 3px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        var(--crimson-primary) 20%,
+        var(--gold-primary) 50%,
+        var(--crimson-primary) 80%,
+        transparent 100%
+    );
+    opacity: 0.75;
+}
+
+.nav-container {
+    max-width: 1420px;
+    margin: 0 auto;
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+/* Brasão da Taverna */
+.brand-crest-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--text-ivory);
+    flex-shrink: 0;
+}
+
+.templar-shield-emblem {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 35% 30%, var(--crimson-primary) 0%, #3d060c 75%, #1d0306 100%);
+    border: 2px solid var(--gold-primary);
+    border-radius: 6px 6px 22px 22px;
+    box-shadow: 0 0 16px var(--crimson-glow), inset 0 0 10px rgba(0, 0, 0, 0.7);
+    color: var(--gold-bright);
+    transition: var(--transition);
+}
+
+.brand-crest-link:hover .templar-shield-emblem {
+    transform: translateY(-1px) scale(1.03);
+    border-color: var(--gold-bright);
+    box-shadow: 0 0 22px var(--gold-glow), 0 0 18px var(--crimson-glow);
+}
+
+.brand-title-wrap {
     display: flex;
     flex-direction: column;
 }
 
-.brand-name {
-    font-family: var(--font-heading);
-    font-size: 1.05rem;
+.brand-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 0.06em;
     color: var(--gold-bright);
-    line-height: 1.1;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+    line-height: 1.15;
 }
 
-.brand-sub {
+.brand-subtitle {
+    font-family: var(--font-heading);
     font-size: 0.68rem;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--brass-muted);
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
 }
 
-/* Abas de Navegação (Pill Tabs) */
+/* Navegação Principal */
 .nav-tabs {
     display: flex;
     align-items: center;
@@ -173,767 +288,1103 @@ body {
     display: none;
 }
 
-.nav-pill {
-    font-family: var(--font-ui);
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: #a89887;
+.nav-tab-btn {
+    position: relative;
     background: transparent;
-    border: none;
-    padding: 8px 16px;
-    border-radius: var(--radius-pill);
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all var(--transition);
-}
-
-.nav-pill:hover {
-    color: var(--gold-light);
-    background: rgba(245, 183, 56, 0.1);
-}
-
-.nav-pill.active {
-    background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-primary) 100%);
-    color: #1a1106;
-    font-weight: 700;
-    box-shadow: 0 2px 10px var(--gold-glow);
-}
-
-/* Ações do Canto Direito */
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.icon-btn-pill {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: rgba(44, 31, 22, 0.6);
-    border: 1px solid var(--tavern-border-light);
-    color: #c9b9a6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 15px;
-    position: relative;
-    transition: all var(--transition);
-}
-
-.icon-btn-pill:hover {
-    color: var(--gold-bright);
-    border-color: var(--gold-bright);
-    background: rgba(245, 183, 56, 0.15);
-}
-
-.notification-badge {
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    width: 8px;
-    height: 8px;
-    background: #e74c3c;
-    border-radius: 50%;
-    box-shadow: 0 0 6px rgba(231, 76, 60, 0.8);
-}
-
-/* Avatar do Mestre da Taverna */
-.avatar-host {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding-left: 6px;
-    border-left: 1px solid rgba(212, 175, 55, 0.18);
-}
-
-.avatar-disc {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #422d1f 0%, #20140c 100%);
-    border: 2px solid var(--gold-bright);
-    box-shadow: 0 0 8px rgba(245, 183, 56, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--gold-bright);
-    font-weight: 700;
-    position: relative;
-}
-
-.avatar-online-dot {
-    position: absolute;
-    bottom: -1px;
-    right: -1px;
-    width: 10px;
-    height: 10px;
-    background: #10b981;
-    border: 2px solid #19120c;
-    border-radius: 50%;
-}
-
-/* ==========================================================================
-   2. TÍTULO E BARRA DE STATUS / MÉTRICAS (KPIS SEGMENTADOS)
-   ========================================================================== */
-.section-kpi-bar {
-    margin-bottom: 24px;
-}
-
-.title-header-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
-    gap: 16px;
-}
-
-.main-title-wrap {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.main-title {
-    font-family: var(--font-heading);
-    font-size: 2.15rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #fff9ed;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-}
-
-.badge-roster-total {
-    background: rgba(245, 183, 56, 0.15);
-    border: 1px solid var(--gold-bright);
-    color: var(--gold-bright);
-    font-size: 0.82rem;
-    font-weight: 700;
-    padding: 4px 14px;
-    border-radius: var(--radius-pill);
-    letter-spacing: 0.5px;
-}
-
-/* Métricas em Linha Horizontal Segmentada */
-.kpis-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(25, 18, 12, 0.7);
-    border: 1px solid var(--tavern-border-light);
-    border-radius: var(--radius-pill);
-    padding: 6px 10px 6px 14px;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.kpi-segments {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.kpi-segment-pill {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 7px 14px;
-    border-radius: var(--radius-pill);
-    font-size: 0.85rem;
-    font-weight: 600;
     border: 1px solid transparent;
+    color: var(--text-parchment);
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 9px 15px;
+    border-radius: var(--radius-sharp);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    transition: var(--transition);
 }
 
-.kpi-dark {
-    background: #120d09;
-    color: #bfb2a3;
-    border-color: rgba(255, 255, 255, 0.08);
+.nav-tab-btn i {
+    color: var(--gold-dim);
+    font-size: 0.85rem;
+    transition: var(--transition);
 }
 
-.kpi-dark strong {
-    color: #f5ede4;
+.nav-tab-btn:hover {
+    color: var(--gold-bright);
+    background: rgba(201, 162, 77, 0.08);
+    border-color: rgba(201, 162, 77, 0.25);
 }
 
-/* Pílula Dourada de Ocupação do Salão (Âmbar Vibrante) */
-.kpi-amber {
-    background: linear-gradient(90deg, #f5b738 0%, #e5a823 100%);
-    color: #181005;
+.nav-tab-btn:hover i {
+    color: var(--gold-bright);
+}
+
+.nav-tab-btn.active {
+    color: #140b06;
+    background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-primary) 100%);
+    border-color: #fff2c2;
     font-weight: 700;
-    box-shadow: 0 2px 10px var(--gold-glow);
+    box-shadow: 0 0 18px var(--gold-glow), inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
-.kpi-amber strong {
-    color: #120b04;
+.nav-tab-btn.active i {
+    color: #3d060c;
 }
 
-.kpi-muted {
-    background: rgba(44, 31, 22, 0.5);
-    color: #9c8976;
-    border-color: rgba(212, 175, 55, 0.1);
-}
-
-.kpi-muted strong {
-    color: #ded1c1;
-}
-
-/* Dropdowns Rápidos do Reino */
-.kpi-dropdowns {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.pill-select-btn {
-    background: transparent;
-    border: 1px solid rgba(212, 175, 55, 0.18);
-    color: #bdaea0;
-    font-family: var(--font-ui);
-    font-size: 0.82rem;
-    font-weight: 600;
-    padding: 6px 14px;
-    border-radius: var(--radius-pill);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: all var(--transition);
-}
-
-.pill-select-btn:hover {
-    color: var(--gold-bright);
-    border-color: var(--gold-bright);
-    background: rgba(245, 183, 56, 0.1);
-}
-
-/* ==========================================================================
-   3. BARRA DE FILTROS E PESQUISA (TOOLBAR SOFT PILL)
-   ========================================================================== */
-.toolbar-section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    gap: 14px;
-}
-
-.filter-pills-group {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.filter-pill {
-    background: rgba(30, 21, 14, 0.85);
-    border: 1px solid var(--tavern-border);
-    color: #dfd3c5;
-    font-family: var(--font-ui);
-    font-size: 0.82rem;
-    font-weight: 600;
-    padding: 8px 16px;
-    border-radius: var(--radius-pill);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: all var(--transition);
-}
-
-.filter-pill:hover {
-    border-color: var(--gold-bright);
-    color: var(--gold-bright);
-    background: rgba(245, 183, 56, 0.12);
-}
-
-.filter-pill.active {
-    background: rgba(245, 183, 56, 0.2);
-    border-color: var(--gold-bright);
-    color: var(--gold-bright);
-}
-
-/* Campo de Busca Estilo Pílula */
-.search-pill-wrapper {
-    position: relative;
-    min-width: 290px;
-    flex: 1;
-    max-width: 360px;
-}
-
-.search-pill-wrapper i {
-    position: absolute;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--gold-bright);
-    font-size: 14px;
-}
-
-.search-pill-input {
-    width: 100%;
-    background: #140e0a;
-    border: 1px solid var(--tavern-border);
-    color: #f7eee3;
-    font-family: var(--font-ui);
-    font-size: 0.88rem;
-    padding: 10px 16px 10px 42px;
-    border-radius: var(--radius-pill);
-    transition: all var(--transition);
-}
-
-.search-pill-input::placeholder {
-    color: #8f7d6c;
-}
-
-.search-pill-input:focus {
-    outline: none;
-    border-color: var(--gold-bright);
-    box-shadow: 0 0 12px var(--gold-glow);
-    background: #1c130d;
-}
-
-/* Ações da Toolbar */
-.toolbar-actions {
+/* Status de Conexão & Ações da Coroa */
+.nav-right {
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-shrink: 0;
 }
 
-.btn-cta-gold {
-    background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-primary) 100%);
-    color: #140d05;
-    font-family: var(--font-ui);
-    font-size: 0.88rem;
-    font-weight: 700;
-    padding: 10px 20px;
-    border-radius: var(--radius-pill);
-    border: none;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 14px var(--gold-glow);
-    transition: all var(--transition);
-}
-
-.btn-cta-gold:hover {
-    background: linear-gradient(180deg, #ffd700 0%, var(--gold-bright) 100%);
-    box-shadow: 0 6px 20px rgba(245, 183, 56, 0.5);
-    transform: translateY(-1px);
-}
-
-.btn-pill-subtle {
-    background: rgba(30, 21, 14, 0.85);
-    border: 1px solid var(--tavern-border);
-    color: #dfd3c5;
-    font-family: var(--font-ui);
-    font-size: 0.88rem;
-    font-weight: 600;
-    padding: 10px 16px;
-    border-radius: var(--radius-pill);
-    cursor: pointer;
+.connection-seal {
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    transition: all var(--transition);
+    padding: 5px 12px;
+    border-radius: var(--radius-sharp);
+    border: 1px solid var(--iron-border);
+    background: rgba(12, 9, 13, 0.85);
+    font-family: var(--font-heading);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-parchment);
 }
 
-.btn-pill-subtle:hover {
-    color: var(--gold-bright);
+.seal-flame {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+}
+
+.connection-seal.offline .seal-flame {
+    background: #f59e0b;
+    box-shadow: 0 0 8px #f59e0b;
+}
+
+.icon-relic-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sharp);
+    border: 1px solid var(--gold-border);
+    background: linear-gradient(180deg, #1d1620 0%, #110d13 100%);
+    color: var(--gold-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.92rem;
+}
+
+.icon-relic-btn:hover {
     border-color: var(--gold-bright);
+    color: var(--gold-bright);
+    box-shadow: 0 0 12px var(--gold-glow);
+    transform: translateY(-1px);
+}
+
+.master-crest {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding-left: 10px;
+    border-left: 1px solid var(--gold-border);
+}
+
+.master-medallion {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #5e111a 0%, #240609 100%);
+    border: 2px solid var(--gold-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold-bright);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.78rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
 
 /* ==========================================================================
-   4. TABELA DE REGISTROS (MAIN ROSTER CARD - ESTILO SAAS DE LUXO)
+   3. CONTEÚDO PRINCIPAL & BANNER HERÁLDICO
    ========================================================================== */
-.roster-card {
-    background: var(--parchment-sheet);
-    border: 1px solid var(--parchment-border);
-    border-radius: var(--radius-card);
-    box-shadow: var(--shadow-float);
-    overflow: hidden;
+.sanctuary-main {
+    max-width: 1420px;
+    margin: 0 auto;
+    padding: 28px 24px 68px;
+}
+
+.view-panel {
+    display: none;
+    animation: fadeGothic 0.28s ease-out;
+}
+
+.view-panel.active {
+    display: block;
+}
+
+@keyframes fadeGothic {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cabeçalho do Salão */
+.hall-banner {
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    background:
+        radial-gradient(circle at 85% 50%, rgba(143, 22, 34, 0.22) 0%, transparent 55%),
+        linear-gradient(135deg, rgba(28, 21, 31, 0.96) 0%, rgba(15, 11, 17, 0.98) 100%);
+}
+
+.hall-title-block {
+    max-width: 680px;
+}
+
+.hall-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-primary);
+    margin-bottom: 6px;
+}
+
+.hall-title-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.hall-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-ivory);
+    letter-spacing: 0.04em;
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.85);
+    line-height: 1.15;
+}
+
+.roster-wax-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 13px;
+    background: linear-gradient(180deg, rgba(143, 22, 34, 0.55) 0%, rgba(78, 9, 17, 0.85) 100%);
+    border: 1px solid rgba(240, 207, 123, 0.45);
+    border-radius: 2px;
+    font-family: var(--font-heading);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--gold-bright);
+    text-transform: uppercase;
+}
+
+.hall-subtitle {
+    margin-top: 8px;
+    font-size: 1.08rem;
+    font-style: italic;
+    color: var(--text-parchment);
+}
+
+.hall-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Botões Medievais */
+.btn-gothic {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-heading);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 17px;
+    border-radius: var(--radius-sharp);
+    border: 1px solid var(--gold-border);
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.btn-templar-primary {
+    background: linear-gradient(180deg, #a61c2a 0%, #6e0e18 100%);
+    border-color: var(--gold-primary);
+    color: var(--gold-bright);
+    box-shadow: 0 4px 16px rgba(143, 22, 34, 0.45), inset 0 1px 0 rgba(255, 215, 130, 0.25);
+}
+
+.btn-templar-primary:hover {
+    background: linear-gradient(180deg, #bf2131 0%, #83111d 100%);
+    border-color: var(--gold-bright);
+    color: #fff6dc;
+    box-shadow: 0 6px 22px rgba(200, 35, 51, 0.55), 0 0 12px var(--gold-glow);
+    transform: translateY(-1px);
+}
+
+.btn-iron {
+    background: linear-gradient(180deg, #241d27 0%, #151017 100%);
+    border-color: var(--gold-border);
+    color: var(--text-ivory);
+}
+
+.btn-iron:hover {
+    border-color: var(--gold-bright);
+    color: var(--gold-bright);
+    background: linear-gradient(180deg, #2d2431 0%, #1c151f 100%);
+}
+
+.btn-gold-solid {
+    background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-primary) 100%);
+    border-color: #fff1c1;
+    color: #1a0f08;
+}
+
+.btn-gold-solid:hover {
+    filter: brightness(1.08);
+    box-shadow: 0 0 18px var(--gold-glow);
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   4. RELICÁRIOS DE MÉTRICAS (KPIs ESTILO CASTLEVANIA HUD)
+   ========================================================================== */
+.relic-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.relic-card {
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    transition: var(--transition);
+}
+
+.relic-card:hover {
+    border-color: var(--gold-border-strong);
+    transform: translateY(-2px);
+}
+
+.relic-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.relic-label {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-primary);
+}
+
+.relic-value {
+    font-family: var(--font-display);
+    font-size: 1.95rem;
+    font-weight: 700;
+    color: var(--text-ivory);
+    line-height: 1.1;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.relic-sub {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.relic-emblem {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gold-border);
+    background: radial-gradient(circle, rgba(201, 162, 77, 0.14) 0%, rgba(12, 9, 13, 0.9) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.75);
+}
+
+.relic-emblem.crimson { color: #ef5b67; border-color: rgba(230, 57, 70, 0.45); }
+.relic-emblem.amber { color: var(--gold-bright); border-color: rgba(240, 207, 123, 0.45); }
+.relic-emblem.sapphire { color: #72b3ff; border-color: rgba(72, 149, 239, 0.45); }
+.relic-emblem.emerald { color: #6ee7b7; border-color: rgba(110, 231, 183, 0.45); }
+
+/* ==========================================================================
+   5. BARRA DE FILTROS, BUSCA & SELETOR DE MODO
+   ========================================================================== */
+.codex-toolbar {
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.class-sigil-filters {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.sigil-filter-btn {
+    background: rgba(12, 9, 13, 0.75);
+    border: 1px solid var(--iron-border);
+    color: var(--text-parchment);
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 7px 13px;
+    border-radius: var(--radius-sharp);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: var(--transition);
+}
+
+.sigil-filter-btn:hover {
+    border-color: var(--gold-primary);
+    color: var(--gold-bright);
+}
+
+.sigil-filter-btn.active {
+    background: linear-gradient(180deg, rgba(143, 22, 34, 0.7) 0%, rgba(78, 9, 17, 0.9) 100%);
+    border-color: var(--gold-bright);
+    color: var(--gold-bright);
+    box-shadow: 0 0 12px var(--crimson-glow);
+}
+
+.toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    justify-content: flex-end;
+    min-width: 260px;
+}
+
+.scroll-search-wrap {
     position: relative;
+    flex: 1;
+    max-width: 340px;
+    min-width: 210px;
+}
+
+.scroll-search-wrap i {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold-primary);
+    font-size: 0.85rem;
+    pointer-events: none;
+}
+
+.scroll-search-input {
+    width: 100%;
+    padding: 9px 14px 9px 38px;
+    background: var(--bg-inset);
+    border: 1px solid var(--gold-border);
+    border-radius: var(--radius-sharp);
+    color: var(--text-ivory);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.scroll-search-input::placeholder {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.scroll-search-input:focus {
+    outline: none;
+    border-color: var(--gold-bright);
+    box-shadow: 0 0 0 2px rgba(201, 162, 77, 0.18);
+}
+
+.view-toggle-group {
+    display: inline-flex;
+    border: 1px solid var(--gold-border);
+    border-radius: var(--radius-sharp);
+    overflow: hidden;
+    background: var(--bg-inset);
+}
+
+.view-toggle-btn {
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.88rem;
+    transition: var(--transition);
+}
+
+.view-toggle-btn:hover {
+    color: var(--gold-bright);
+}
+
+.view-toggle-btn.active {
+    background: rgba(201, 162, 77, 0.2);
+    color: var(--gold-bright);
+}
+
+/* Barra de Ações em Lote */
+.bulk-action-bar {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 18px;
+    margin-bottom: 16px;
+    background: linear-gradient(90deg, rgba(143, 22, 34, 0.35) 0%, rgba(28, 21, 31, 0.96) 100%);
+    border: 1px solid var(--gold-primary);
+    border-radius: var(--radius-sharp);
+}
+
+.bulk-action-bar.visible {
+    display: flex;
+}
+
+.bulk-count-text {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    color: var(--gold-bright);
+}
+
+/* ==========================================================================
+   6. CÓDICE DE REGISTROS (TABELA GÓTICA DE PERGAMINHO ESCURO)
+   ========================================================================== */
+.codex-container {
+    overflow: hidden;
 }
 
 .table-responsive {
     overflow-x: auto;
 }
 
-.roster-table {
+.codex-table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
+    border-collapse: collapse;
     text-align: left;
-    color: var(--text-dark);
+    min-width: 1020px;
 }
 
-/* Cabeçalho da Tabela */
-.roster-table thead th {
-    background: #f4eee2;
-    color: #635343;
-    font-family: var(--font-ui);
-    font-size: 0.76rem;
+.codex-table thead th {
+    background: linear-gradient(180deg, #211824 0%, #161018 100%);
+    color: var(--gold-primary);
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
     font-weight: 700;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    letter-spacing: 0.8px;
-    padding: 16px 14px;
-    border-bottom: 1px solid var(--parchment-border);
+    padding: 14px 14px;
+    border-bottom: 2px solid var(--gold-dim);
     white-space: nowrap;
 }
 
-/* Linhas da Tabela */
-.roster-table tbody tr {
-    background: #ffffff;
-    transition: all var(--transition);
+.codex-table tbody tr {
+    border-bottom: 1px solid rgba(201, 162, 77, 0.14);
+    transition: var(--transition);
     cursor: pointer;
 }
 
-.roster-table tbody tr:nth-child(even) {
-    background: var(--parchment-sheet);
+.codex-table tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.015);
 }
 
-.roster-table tbody tr:hover {
-    background: #fff8e8;
+.codex-table tbody tr:hover {
+    background: rgba(201, 162, 77, 0.08);
 }
 
-/* Linha Selecionada / Em Destaque (Estilo SaaS Amarelo-Âmbar) */
-.roster-table tbody tr.row-selected {
-    background: var(--row-highlight-bg) !important;
-    color: var(--row-highlight-text);
-    box-shadow: inset 0 1px 0 var(--row-highlight-border), inset 0 -1px 0 var(--row-highlight-border);
+.codex-table tbody tr.row-selected {
+    background: linear-gradient(90deg, rgba(143, 22, 34, 0.28) 0%, rgba(201, 162, 77, 0.12) 100%) !important;
+    box-shadow: inset 3px 0 0 var(--gold-bright);
 }
 
-.roster-table tbody tr.row-selected td {
-    color: var(--row-highlight-text);
-}
-
-.roster-table tbody tr.row-selected .adventurer-title {
-    color: #120c04;
-}
-
-.roster-table tbody tr.row-selected .adventurer-sub {
-    color: #5c4728;
-}
-
-.roster-table tbody td {
-    padding: 14px 14px;
-    font-size: 0.88rem;
-    color: var(--text-dark);
-    border-bottom: 1px solid var(--parchment-border);
+.codex-table tbody td {
+    padding: 13px 14px;
     vertical-align: middle;
 }
 
-/* Checkbox Customizada */
-.custom-checkbox {
+/* Checkbox Gótico */
+.gothic-checkbox {
     width: 18px;
     height: 18px;
-    border-radius: 5px;
-    border: 1.5px solid #a39281;
+    border-radius: 2px;
+    border: 1.5px solid var(--gold-dim);
+    background: var(--bg-inset);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    background: #fff;
-    transition: all var(--transition);
+    transition: var(--transition);
+    color: #160c07;
 }
 
-.custom-checkbox input {
-    display: none;
+.gothic-checkbox.checked {
+    background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-primary) 100%);
+    border-color: #fff0bf;
 }
 
-.custom-checkbox.checked {
-    background: var(--gold-amber);
-    border-color: #d97706;
-    color: #fff;
-}
-
-/* Célula do Aventureiro (Avatar + Nome) */
-.adventurer-cell {
+/* Célula do Cavaleiro / Aventureiro */
+.knight-cell {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-.adventurer-avatar-pill {
+.knight-crest-avatar {
     width: 40px;
     height: 40px;
-    min-width: 40px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #382517 0%, #1e130a 100%);
-    border: 2px solid var(--gold-bright);
+    border-radius: 4px 4px 16px 16px;
+    background: radial-gradient(circle at 35% 30%, #3a1721 0%, #140c14 100%);
+    border: 1.5px solid var(--gold-primary);
     color: var(--gold-bright);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
-    font-weight: 700;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    font-size: 1rem;
+    flex-shrink: 0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.65);
 }
 
-.adventurer-info {
+.knight-details {
     display: flex;
     flex-direction: column;
 }
 
-.adventurer-title {
+.knight-name {
     font-family: var(--font-heading);
-    font-size: 0.98rem;
+    font-size: 0.96rem;
     font-weight: 700;
-    color: #24160b;
-    line-height: 1.2;
+    color: var(--text-ivory);
+    line-height: 1.25;
 }
 
-.adventurer-sub {
-    font-size: 0.75rem;
-    color: var(--text-dark-muted);
-}
-
-/* Vocação / Classe e Raça */
-.roster-tag {
-    font-family: var(--font-ui);
-    font-weight: 600;
-    font-size: 0.84rem;
-    color: #3b2c1e;
-}
-
-/* Nível Pill */
-.level-pill {
-    display: inline-block;
-    padding: 3px 10px;
-    background: #eee6d8;
-    color: #4a3a2a;
-    font-size: 0.76rem;
-    font-weight: 700;
-    border-radius: var(--radius-pill);
-    border: 1px solid #dcd1bf;
-}
-
-/* Vigor & Mana Integrados */
-.vitals-col {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    min-width: 105px;
-}
-
-.mini-vital {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.knight-id {
+    font-family: var(--font-mono);
     font-size: 0.72rem;
-    font-weight: 700;
+    color: var(--text-muted);
 }
 
-.mini-vital-hp {
-    color: #a82224;
-}
-
-.mini-vital-mp {
-    color: #1d5f8a;
-}
-
-.mini-bar-track {
-    height: 4px;
-    background: #e4dac7;
-    border-radius: var(--radius-pill);
-    overflow: hidden;
-}
-
-.mini-bar-hp {
-    height: 100%;
-    background: var(--ruby-vitality);
-    border-radius: var(--radius-pill);
-}
-
-.mini-bar-mp {
-    height: 100%;
-    background: var(--sapphire-mana);
-    border-radius: var(--radius-pill);
-}
-
-/* Tríade de Atributos em Pílula */
-.triad-cell-pill {
+/* Badges & Selos */
+.class-badge {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    background: #eee5d3;
-    padding: 4px 10px;
-    border-radius: var(--radius-pill);
-    border: 1px solid #dfd3bd;
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: #3d2a19;
-}
-
-.triad-cell-pill span {
-    color: var(--gold-amber);
-}
-
-/* Status do Alinhamento Moral (Soft Pill com Dot Estilo SaaS) */
-.status-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 4px 12px;
-    border-radius: var(--radius-pill);
-    font-size: 0.78rem;
-    font-weight: 700;
-    text-transform: capitalize;
+    gap: 7px;
+    padding: 4px 11px;
+    border-radius: 2px;
+    background: rgba(12, 9, 13, 0.8);
+    border: 1px solid var(--gold-border);
+    color: var(--gold-bright);
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
     white-space: nowrap;
 }
 
-.status-dot {
-    width: 6px;
+.race-text {
+    font-size: 1rem;
+    color: var(--text-parchment);
+}
+
+.level-crest {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 58px;
+    padding: 4px 10px;
+    border-radius: 2px;
+    background: linear-gradient(180deg, #2b2114 0%, #17110a 100%);
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-bright);
+    font-family: var(--font-heading);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+/* Barras de Vida & Mana Estilo Castlevania */
+.castlevania-vitals {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    width: 145px;
+}
+
+.vital-line {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.vital-meta {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+}
+
+.vital-meta .lbl-hp { color: #ff7b86; }
+.vital-meta .lbl-mp { color: #7dbbff; }
+.vital-meta .val { color: var(--text-ivory); }
+
+.gothic-bar-track {
     height: 6px;
-    border-radius: 50%;
+    background: #080608;
+    border: 1px solid #47392b;
+    padding: 1px;
+    position: relative;
 }
 
-.status-good {
-    background: var(--status-good-bg);
-    color: var(--status-good-text);
-}
-.status-good .status-dot {
-    background: var(--status-good-dot);
-    box-shadow: 0 0 6px var(--status-good-dot);
+.gothic-bar-fill-hp {
+    height: 100%;
+    background: linear-gradient(90deg, #750d18 0%, #d92638 70%, #ff6b78 100%);
+    box-shadow: 0 0 6px rgba(217, 38, 56, 0.5);
 }
 
-.status-neutral {
-    background: var(--status-neutral-bg);
-    color: var(--status-neutral-text);
-}
-.status-neutral .status-dot {
-    background: var(--status-neutral-dot);
+.gothic-bar-fill-mp {
+    height: 100%;
+    background: linear-gradient(90deg, #123363 0%, #2a6ec9 75%, #75b4ff 100%);
+    box-shadow: 0 0 6px rgba(42, 110, 201, 0.5);
 }
 
-.status-evil {
-    background: var(--status-evil-bg);
-    color: var(--status-evil-text);
+/* Tríade de Atributos */
+.triad-tablet {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 11px;
+    background: var(--bg-inset);
+    border: 1px solid var(--iron-border);
+    border-radius: 2px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-ivory);
 }
-.status-evil .status-dot {
-    background: var(--status-evil-dot);
+
+.triad-tablet .sep {
+    color: var(--gold-dim);
+}
+
+/* Selo de Alinhamento */
+.wax-seal-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 11px;
+    border-radius: 2px;
+    font-family: var(--font-heading);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.wax-seal-pill.good {
+    background: var(--seal-good-bg);
+    color: var(--seal-good-text);
+    border: 1px solid var(--seal-good-border);
+}
+
+.wax-seal-pill.neutral {
+    background: var(--seal-neutral-bg);
+    color: var(--seal-neutral-text);
+    border: 1px solid var(--seal-neutral-border);
+}
+
+.wax-seal-pill.evil {
+    background: var(--seal-evil-bg);
+    color: var(--seal-evil-text);
+    border: 1px solid var(--seal-evil-border);
 }
 
 /* Ações da Tabela */
-.table-actions {
+.row-actions {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 6px;
 }
 
-.btn-action-icon {
+.btn-codex-action {
     width: 32px;
     height: 32px;
-    border-radius: 50%;
-    border: 1px solid #d4c8b6;
-    background: #f7f3ea;
-    color: #594838;
+    border-radius: 2px;
+    border: 1px solid var(--iron-border);
+    background: var(--bg-inset);
+    color: var(--text-parchment);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 13px;
-    transition: all var(--transition);
+    transition: var(--transition);
+    font-size: 0.82rem;
 }
 
-.btn-action-icon:hover {
-    background: var(--gold-bright);
-    color: #120b05;
+.btn-codex-action:hover {
     border-color: var(--gold-primary);
+    color: var(--gold-bright);
+    background: rgba(201, 162, 77, 0.12);
 }
 
-.btn-action-delete:hover {
-    background: #e74c3c;
-    color: #fff;
-    border-color: #c0392b;
+.btn-codex-action.banish:hover {
+    border-color: var(--crimson-bright);
+    color: #ff8a93;
+    background: rgba(200, 35, 51, 0.18);
 }
 
-/* Rodapé de Paginação do Roster */
-.roster-footer {
+/* ==========================================================================
+   7. VISUALIZAÇÃO EM CARTAS HERÁLDICAS (TAROT / GRIMOIRE CARDS)
+   ========================================================================== */
+.heraldic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(305px, 1fr));
+    gap: 18px;
+    padding: 20px;
+}
+
+.knight-tarot-card {
+    position: relative;
+    background: linear-gradient(180deg, #1d1520 0%, #100c12 100%);
+    border: 1px solid var(--gold-border);
+    border-radius: 4px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: var(--transition);
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+}
+
+.knight-tarot-card:hover {
+    border-color: var(--gold-bright);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.75), 0 0 18px var(--gold-glow);
+}
+
+.tarot-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    border-bottom: 1px solid rgba(201, 162, 77, 0.18);
+    padding-bottom: 12px;
+}
+
+.tarot-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.tarot-stat-box {
+    background: var(--bg-inset);
+    border: 1px solid var(--iron-border);
+    padding: 7px 6px;
+    text-align: center;
+    border-radius: 2px;
+}
+
+.tarot-stat-lbl {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: var(--gold-primary);
+}
+
+.tarot-stat-val {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-ivory);
+}
+
+.tarot-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 20px;
-    background: #f7f2e6;
-    border-top: 1px solid var(--parchment-border);
+    gap: 8px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(201, 162, 77, 0.14);
+}
+
+/* Estado Vazio & Rodapé com Paginação Real */
+.empty-crypt {
+    padding: 64px 20px;
+    text-align: center;
+    color: var(--text-parchment);
+}
+
+.empty-crypt-icon {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gold-border);
+    background: radial-gradient(circle, rgba(143, 22, 34, 0.25) 0%, rgba(12, 9, 13, 0.9) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7rem;
+    color: var(--gold-primary);
+}
+
+.empty-crypt h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--gold-bright);
+    margin-bottom: 6px;
+}
+
+.empty-crypt p {
+    max-width: 440px;
+    margin: 0 auto 20px;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.codex-footer {
+    padding: 14px 20px;
+    border-top: 1px solid var(--gold-border);
+    background: rgba(12, 9, 13, 0.72);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     flex-wrap: wrap;
     gap: 12px;
+    font-size: 0.92rem;
+    color: var(--text-parchment);
 }
 
-.roster-footer-text {
-    font-size: 0.84rem;
-    color: #6e5e4f;
-    font-weight: 500;
-}
-
-.pagination-pills {
+.pagination {
     display: flex;
     align-items: center;
     gap: 6px;
 }
 
-.page-btn {
-    padding: 5px 12px;
-    border-radius: var(--radius-pill);
-    border: 1px solid #d9ccb9;
-    background: #fff;
-    color: #4a3b2c;
-    font-size: 0.8rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all var(--transition);
-}
-
-.page-btn:hover {
-    border-color: var(--gold-amber);
-    color: var(--gold-amber);
-}
-
-.page-btn.active {
-    background: var(--gold-bright);
-    color: #140d05;
-    border-color: var(--gold-primary);
-}
-
-/* Estado Vazio */
-.empty-roster {
-    text-align: center;
-    padding: 60px 20px;
-    color: #8c7b6c;
-}
-
-.empty-roster i {
-    font-size: 40px;
-    color: var(--gold-amber);
-    margin-bottom: 12px;
-}
-
-.empty-roster h3 {
+.page-rune-btn {
+    min-width: 34px;
+    height: 34px;
+    padding: 0 9px;
+    border-radius: 2px;
+    border: 1px solid var(--gold-border);
+    background: var(--bg-panel);
+    color: var(--text-parchment);
     font-family: var(--font-heading);
-    font-size: 1.3rem;
-    color: #2b1c10;
-    margin-bottom: 4px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.page-rune-btn:hover:not(:disabled) {
+    border-color: var(--gold-bright);
+    color: var(--gold-bright);
+}
+
+.page-rune-btn.active {
+    background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold-primary) 100%);
+    border-color: #fff1c1;
+    color: #1a0f08;
+}
+
+.page-rune-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
 
 /* ==========================================================================
-   5. MODAL ELEGANTE: TOMO DE INSCRIÇÃO DE AVENTUREIRO
+   8. ABAS SECUNDÁRIAS (ALTAR DE MÉTRICAS & QUADRO DE CRUZADAS)
+   ========================================================================== */
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 20px;
+}
+
+.chronicle-panel {
+    padding: 22px 24px;
+}
+
+.panel-heading {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-bright);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--gold-border);
+}
+
+.bar-stat-list {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.bar-stat-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.bar-stat-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    color: var(--text-ivory);
+}
+
+.bar-stat-track {
+    height: 8px;
+    background: var(--bg-inset);
+    border: 1px solid var(--iron-border);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.bar-stat-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--crimson-primary) 0%, var(--gold-primary) 100%);
+    transition: width 0.4s ease;
+}
+
+.crusade-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 18px;
+}
+
+.crusade-card {
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.crusade-rank {
+    font-family: var(--font-heading);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #ff8a93;
+}
+
+.crusade-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--gold-bright);
+    margin-top: 4px;
+}
+
+.crusade-lore {
+    font-size: 0.98rem;
+    color: var(--text-parchment);
+    font-style: italic;
+}
+
+.crusade-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.crusade-result {
+    padding: 10px 12px;
+    border-radius: 2px;
+    background: var(--bg-inset);
+    border: 1px solid var(--gold-border);
+    font-size: 0.94rem;
+    display: none;
+}
+
+.crusade-result.show {
+    display: block;
+}
+
+/* ==========================================================================
+   9. MODAIS GÓTICOS (CADASTRO, FICHA CASTLEVANIA & CONFIRMAÇÃO)
    ========================================================================== */
 .modal-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(10, 7, 5, 0.78);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    z-index: 100;
+    background: rgba(5, 3, 7, 0.82);
+    backdrop-filter: blur(6px);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 9999;
     padding: 20px;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.28s ease;
+    transition: opacity 0.22s ease, visibility 0.22s ease;
 }
 
 .modal-backdrop.open {
@@ -941,280 +1392,268 @@ body {
     visibility: visible;
 }
 
-.modal-tome {
-    background: linear-gradient(145deg, #1f1610 0%, #150e09 100%);
-    border: 2px solid var(--gold-bright);
-    border-radius: var(--radius-modal);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px var(--gold-glow);
+.gothic-modal {
     width: 100%;
-    max-width: 740px;
-    max-height: 90vh;
+    max-width: 700px;
+    max-height: 92vh;
     overflow-y: auto;
-    position: relative;
-    padding: 32px 30px;
-    transform: scale(0.94) translateY(20px);
-    transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: scale(0.96) translateY(10px);
+    transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.modal-backdrop.open .modal-tome {
+.modal-backdrop.open .gothic-modal {
     transform: scale(1) translateY(0);
 }
 
-.modal-close-btn {
-    position: absolute;
-    top: 18px;
-    right: 20px;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid var(--tavern-border);
-    color: #c9b9a6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 16px;
-    transition: all var(--transition);
-}
-
-.modal-close-btn:hover {
-    background: #e74c3c;
-    color: #fff;
-    border-color: #e74c3c;
+.gothic-modal.compact {
+    max-width: 460px;
 }
 
 .modal-header {
-    text-align: center;
-    margin-bottom: 24px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--gold-border);
+    background: linear-gradient(180deg, rgba(143, 22, 34, 0.24) 0%, rgba(23, 18, 25, 0.95) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
 }
 
 .modal-title {
-    font-family: var(--font-heading);
-    font-size: 1.7rem;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
     color: var(--gold-bright);
-    letter-spacing: 1px;
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 10px;
 }
 
 .modal-desc {
-    color: #ad9a86;
-    font-size: 0.88rem;
-    margin-top: 4px;
+    font-size: 0.92rem;
+    color: var(--text-parchment);
+    font-style: italic;
+    margin-top: 2px;
 }
 
-/* Seções do Formulário Modal */
-.modal-form-section {
-    background: rgba(14, 9, 6, 0.6);
-    border: 1px solid rgba(212, 175, 55, 0.15);
-    border-radius: 14px;
-    padding: 18px 16px;
-    margin-bottom: 16px;
+.modal-close {
+    width: 34px;
+    height: 34px;
+    border-radius: 2px;
+    border: 1px solid var(--gold-border);
+    background: var(--bg-inset);
+    color: var(--text-parchment);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
 }
 
-.modal-section-title {
+.modal-close:hover {
+    border-color: var(--crimson-bright);
+    color: #ff8a93;
+}
+
+.modal-body {
+    padding: 22px 24px;
+}
+
+.form-chapter {
+    margin-bottom: 22px;
+}
+
+.form-chapter:last-child {
+    margin-bottom: 0;
+}
+
+.chapter-heading {
     font-family: var(--font-heading);
-    font-size: 0.95rem;
-    color: var(--gold-light);
-    letter-spacing: 0.8px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-primary);
     margin-bottom: 12px;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.modal-section-title i {
-    color: var(--gold-bright);
-}
-
-/* Grids do Modal */
-.grid-modal {
+.form-grid {
     display: grid;
     gap: 14px;
 }
 
-.grid-identity {
-    grid-template-columns: 2fr 1.3fr 1.3fr 0.9fr;
-}
-
-.grid-vitals {
-    grid-template-columns: 1fr 1fr 1.5fr;
-}
-
-.grid-attributes {
-    grid-template-columns: repeat(3, 1fr);
-}
+.grid-2 { grid-template-columns: 1.4fr 1fr; }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
 
 .field-group {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-}
-
-.field-group label {
-    font-size: 0.78rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    color: #c9b9a6;
-    display: flex;
-    align-items: center;
     gap: 6px;
 }
 
-.field-group label i {
-    color: var(--gold-bright);
+.field-group label {
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-parchment);
 }
 
-.modal-input {
+.gothic-input {
     width: 100%;
-    background: #0f0a06;
-    border: 1px solid rgba(212, 175, 55, 0.28);
-    color: #f7eee3;
-    font-family: var(--font-ui);
-    font-size: 0.92rem;
-    padding: 10px 14px;
-    border-radius: var(--radius-input);
-    transition: all var(--transition);
+    padding: 10px 13px;
+    background: var(--bg-inset);
+    border: 1px solid var(--gold-border);
+    border-radius: var(--radius-sharp);
+    color: var(--text-ivory);
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    transition: var(--transition);
 }
 
-.modal-input:focus {
+.gothic-input:focus {
     outline: none;
     border-color: var(--gold-bright);
-    box-shadow: 0 0 12px var(--gold-glow);
-    background: #170f0a;
+    box-shadow: 0 0 0 2px rgba(201, 162, 77, 0.2);
 }
 
-.attribute-input-box {
+.gothic-input.attr-num {
     text-align: center;
-}
-
-.attribute-input-box label {
-    justify-content: center;
-}
-
-.attribute-input-box input {
-    text-align: center;
-    font-weight: 800;
-    font-size: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 1.15rem;
+    font-weight: 700;
     color: var(--gold-bright);
 }
 
-/* Ações do Modal */
-.modal-actions {
+.modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--gold-border);
+    background: rgba(12, 9, 13, 0.85);
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 12px;
-    margin-top: 24px;
+    gap: 10px;
 }
 
-.btn-modal-cancel {
-    background: transparent;
-    border: 1px solid rgba(212, 175, 55, 0.25);
-    color: #c9b9a6;
-    font-family: var(--font-ui);
-    font-size: 0.88rem;
-    font-weight: 600;
-    padding: 10px 22px;
-    border-radius: var(--radius-pill);
-    cursor: pointer;
-    transition: all var(--transition);
-}
-
-.btn-modal-cancel:hover {
-    color: #fff;
-    border-color: #fff;
-}
-
-/* Toast de Proclamação */
-.toast-notice {
-    position: fixed;
-    bottom: 28px;
-    right: 28px;
-    background: #1c140e;
-    border: 1px solid var(--gold-bright);
-    color: var(--gold-light);
-    border-radius: var(--radius-pill);
-    padding: 12px 24px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), 0 0 15px var(--gold-glow);
+/* Ficha de Inspeção Estilo Castlevania Status Screen */
+.status-sheet-hero {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 0.92rem;
-    font-weight: 600;
-    z-index: 10000;
-    transform: translateY(60px);
-    opacity: 0;
-    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    pointer-events: none;
+    gap: 18px;
+    padding: 16px;
+    background: linear-gradient(135deg, rgba(143, 22, 34, 0.25) 0%, rgba(12, 9, 13, 0.9) 100%);
+    border: 1px solid var(--gold-border);
+    margin-bottom: 18px;
 }
 
-.toast-notice.show {
+.status-sheet-portrait {
+    width: 68px;
+    height: 68px;
+    border-radius: 6px 6px 28px 28px;
+    background: radial-gradient(circle, #5e111a 0%, #17080b 100%);
+    border: 2px solid var(--gold-bright);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: var(--gold-bright);
+    flex-shrink: 0;
+}
+
+.status-sheet-meta h3 {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--gold-bright);
+}
+
+.status-sheet-meta p {
+    font-style: italic;
+    color: var(--text-parchment);
+}
+
+.status-attr-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.status-attr-card {
+    padding: 12px;
+    background: var(--bg-inset);
+    border: 1px solid var(--gold-border);
+    text-align: center;
+}
+
+.status-attr-card span {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: var(--gold-primary);
+}
+
+.status-attr-card strong {
+    font-family: var(--font-display);
+    font-size: 1.55rem;
+    color: var(--text-ivory);
+}
+
+/* ==========================================================================
+   10. TOAST NOTIFIER (MENSAGENS DO ARAUTO)
+   ========================================================================== */
+.herald-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 18px;
+    background: linear-gradient(180deg, #21161e 0%, #120c11 100%);
+    border: 1px solid var(--gold-primary);
+    border-left: 4px solid var(--crimson-bright);
+    border-radius: var(--radius-sharp);
+    box-shadow: var(--shadow-crypt);
+    color: var(--text-ivory);
+    font-size: 0.98rem;
+    transform: translateY(24px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.herald-toast.show {
     transform: translateY(0);
     opacity: 1;
 }
 
-/* ==========================================================================
-   RESPONSIVIDADE
-   ========================================================================== */
-@media (max-width: 1080px) {
-    .grid-identity {
-        grid-template-columns: 1fr 1fr;
-    }
-    .grid-vitals {
-        grid-template-columns: 1fr 1fr;
-    }
+.herald-toast i {
+    color: var(--gold-bright);
+    font-size: 1.05rem;
 }
 
-@media (max-width: 768px) {
-    body {
-        padding: 16px 12px 40px;
-    }
+/* ==========================================================================
+   11. RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .connection-seal { display: none; }
+}
 
-    .top-nav {
-        flex-direction: column;
-        align-items: stretch;
-        border-radius: 20px;
-        padding: 14px;
-    }
+@media (max-width: 820px) {
+    .nav-container { flex-wrap: wrap; }
+    .nav-tabs { order: 3; width: 100%; padding-top: 6px; border-top: 1px solid rgba(201, 162, 77, 0.15); }
+    .grid-2, .grid-3, .status-attr-row { grid-template-columns: 1fr; }
+}
 
-    .nav-actions {
-        justify-content: flex-end;
-    }
-
-    .title-header-row {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .kpis-row {
-        border-radius: 18px;
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .toolbar-section {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .search-pill-wrapper {
-        max-width: 100%;
-    }
-
-    .grid-identity,
-    .grid-vitals,
-    .grid-attributes {
-        grid-template-columns: 1fr;
-    }
-
-    .modal-tome {
-        padding: 24px 18px;
-    }
+@media (max-width: 640px) {
+    .sanctuary-main { padding: 18px 14px 48px; }
+    .hall-banner { padding: 18px; }
+    .hall-title { font-size: 1.48rem; }
+    .toolbar-right { width: 100%; justify-content: space-between; }
+    .scroll-search-wrap { max-width: none; }
+    .herald-toast { left: 14px; right: 14px; bottom: 14px; }
 }
